@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/spacing_tiny"
+    android:paddingHorizontal="@dimen/spacing_small">
+
+    <TextView
+        android:id="@+id/tv_log_level"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="I"
+        android:textAppearance="?attr/textAppearanceBodySmall"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_log_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:fontFamily="monospace"
+        tools:text="2026-10-07 12:00:00.000 I/Tag message"
+        android:textAppearance="?attr/textAppearanceBodySmall" />
+
+</LinearLayout>

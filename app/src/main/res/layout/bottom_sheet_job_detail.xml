@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_preview_bottom_sheet"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="24dp">
+
+    <!-- Drag Handle Indicator -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_drag_handle" />
+
+    <!-- Header Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="14dp">
+
+        <FrameLayout
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_liquid_icon_container">
+
+            <ImageView
+                android:id="@+id/iv_detail_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_video"
+                app:tint="?attr/colorPrimary" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp">
+
+            <TextView
+                android:id="@+id/tv_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                tools:text="Job #5 (Video)" />
+
+            <TextView
+                android:id="@+id/tv_detail_engine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?android:attr/textColorSecondary"
+                tools:text="RIFE (models/rife/rife-v4.6 x4) • Scale x1" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_close_detail"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_preview_close_btn"
+            android:src="@drawable/ic_close"
+            android:contentDescription="@string/action_close"
+            app:tint="?android:attr/textColorSecondary" />
+
+    </LinearLayout>
+
+    <!-- Status & Timestamp Pill Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="12dp">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_detail_status"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:textStyle="bold"
+            app:chipStrokeWidth="0dp"
+            app:ensureMinTouchTargetSize="false"
+            tools:text="Selesai" />
+
+        <TextView
+            android:id="@+id/tv_detail_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:textColor="?android:attr/textColorSecondary"
+            android:gravity="end"
+            tools:text="15 Oct 2026, 10:30:05" />
+
+    </LinearLayout>
+
+    <!-- Info Card Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_liquid_glass_card"
+        android:padding="16dp">
+
+        <!-- Frame Progress Row (for Video) -->
+        <LinearLayout
+            android:id="@+id/layout_detail_frames"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_label_frames"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?android:attr/textColorSecondary" />
+
+            <TextView
+                android:id="@+id/tv_detail_frames"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textStyle="bold"
+                android:textColor="?attr/colorPrimary"
+                tools:text="Frame 120 / 300 (40%)" />
+        </LinearLayout>
+
+        <!-- Source File Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_label_source"
+            android:textAppearance="?attr/textAppearanceLabelSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_detail_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?android:attr/textColorPrimary"
+            android:ellipsize="middle"
+            android:maxLines="2"
+            tools:text="content://media/external/video/media/401" />
+
+        <!-- Output File Section -->
+        <LinearLayout
+            android:id="@+id/layout_detail_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_label_output"
+                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_detail_output"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?android:attr/textColorPrimary"
+                android:ellipsize="middle"
+                android:maxLines="3"
+                tools:text="file:///data/user/0/com.hdify.yuuka/cache/hdify_output_123.mp4" />
+        </LinearLayout>
+
+        <!-- Error Message Section -->
+        <LinearLayout
+            android:id="@+id/layout_detail_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_label_error"
+                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textColor="?attr/colorError"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_detail_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorError"
+                tools:text="HD-HW-101: Vulkan device not found" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Action Buttons Section -->
+    <LinearLayout
+        android:id="@+id/layout_detail_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <!-- Primary & Secondary Actions (Open File & Share) -->
+        <LinearLayout
+            android:id="@+id/layout_positive_actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_detail_secondary"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                app:icon="@drawable/ic_share"
+                app:iconGravity="textStart"
+                android:text="@string/action_share_file" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_detail_primary"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                app:icon="@drawable/ic_play"
+                app:iconGravity="textStart"
+                android:text="@string/action_open_file" />
+
+        </LinearLayout>
+
+        <!-- Destructive Action (Delete Record / Cancel Job) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_detail_danger"
+            style="@style/Widget.Material3.Button.TextButton.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:textColor="?attr/colorError"
+            app:iconTint="?attr/colorError"
+            app:icon="@drawable/ic_delete"
+            app:iconGravity="textStart"
+            android:text="@string/action_delete_record" />
+
+    </LinearLayout>
+
+</LinearLayout>

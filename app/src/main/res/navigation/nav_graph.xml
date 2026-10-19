@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <!-- Global Actions accessible from any screen -->
+    <action
+        android:id="@+id/action_global_to_hardware_info"
+        app:destination="@id/nav_hardware_info"
+        app:enterAnim="@anim/m3_shared_axis_x_in"
+        app:exitAnim="@anim/m3_shared_axis_x_out"
+        app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+        app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+    <action
+        android:id="@+id/action_global_to_benchmark"
+        app:destination="@id/nav_benchmark"
+        app:enterAnim="@anim/m3_shared_axis_x_in"
+        app:exitAnim="@anim/m3_shared_axis_x_out"
+        app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+        app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+    <action
+        android:id="@+id/action_global_to_logs"
+        app:destination="@id/nav_log_crash_report"
+        app:enterAnim="@anim/m3_shared_axis_x_in"
+        app:exitAnim="@anim/m3_shared_axis_x_out"
+        app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+        app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.hdify.ui.home.HomeFragment"
+        android:label="@string/nav_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_image_upscale"
+            app:destination="@id/nav_image_upscale"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_home_to_video_upscale"
+            app:destination="@id/nav_video_upscale"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_home_to_downloader"
+            app:destination="@id/nav_downloader"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_home_to_bg_remover"
+            app:destination="@id/nav_bg_remover"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_home_to_compressor"
+            app:destination="@id/nav_video_compress"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_image_upscale"
+        android:name="com.example.hdify.ui.image.ImageUpscaleFragment"
+        android:label="@string/image_screen_title"
+        tools:layout="@layout/fragment_image_upscale">
+        <action
+            android:id="@+id/action_image_to_result"
+            app:destination="@id/nav_result"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_image_to_queue"
+            app:destination="@id/nav_queue"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_video_upscale"
+        android:name="com.example.hdify.ui.video.VideoUpscaleFragment"
+        android:label="@string/video_screen_title"
+        tools:layout="@layout/fragment_video_upscale">
+        <action
+            android:id="@+id/action_video_to_result"
+            app:destination="@id/nav_result"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_video_to_queue"
+            app:destination="@id/nav_queue"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_result"
+        android:name="com.example.hdify.ui.result.ResultFragment"
+        android:label="@string/result_title"
+        tools:layout="@layout/fragment_result" />
+
+    <fragment
+        android:id="@+id/nav_queue"
+        android:name="com.example.hdify.ui.queue.QueueFragment"
+        android:label="@string/nav_queue"
+        tools:layout="@layout/fragment_queue" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.example.hdify.ui.history.HistoryFragment"
+        android:label="@string/nav_history"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.hdify.ui.settings.SettingsFragment"
+        android:label="@string/nav_settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settings_to_hardware_info"
+            app:destination="@id/nav_hardware_info"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_settings_to_benchmark"
+            app:destination="@id/nav_benchmark"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_settings_to_logs"
+            app:destination="@id/nav_log_crash_report"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_hardware_info"
+        android:name="com.example.hdify.ui.hardware.HardwareInfoFragment"
+        android:label="@string/hardware_info_title"
+        tools:layout="@layout/fragment_hardware_info" />
+
+    <fragment
+        android:id="@+id/nav_benchmark"
+        android:name="com.example.hdify.ui.benchmark.BenchmarkFragment"
+        android:label="@string/benchmark_title"
+        tools:layout="@layout/fragment_benchmark" />
+
+    <fragment
+        android:id="@+id/nav_log_crash_report"
+        android:name="com.example.hdify.ui.logs.LogCrashReportFragment"
+        android:label="@string/log_screen_title"
+        tools:layout="@layout/fragment_log_crash_report" />
+
+    <fragment
+        android:id="@+id/nav_downloader"
+        android:name="com.example.hdify.ui.downloader.DownloaderFragment"
+        android:label="@string/downloader_title"
+        tools:layout="@layout/fragment_downloader">
+        <action
+            android:id="@+id/action_downloader_to_image"
+            app:destination="@id/nav_image_upscale"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+        <action
+            android:id="@+id/action_downloader_to_video"
+            app:destination="@id/nav_video_upscale"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_bg_remover"
+        android:name="com.example.hdify.ui.bgremover.BgRemoverFragment"
+        android:label="@string/bg_remover_title"
+        tools:layout="@layout/fragment_bg_remover">
+        <action
+            android:id="@+id/action_bg_remover_to_image_upscale"
+            app:destination="@id/nav_image_upscale"
+            app:enterAnim="@anim/m3_shared_axis_x_in"
+            app:exitAnim="@anim/m3_shared_axis_x_out"
+            app:popEnterAnim="@anim/m3_shared_axis_x_pop_in"
+            app:popExitAnim="@anim/m3_shared_axis_x_pop_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_video_compress"
+        android:name="com.example.hdify.ui.compressor.VideoCompressFragment"
+        android:label="@string/compressor_title"
+        tools:layout="@layout/fragment_video_compress" />
+
+</navigation>

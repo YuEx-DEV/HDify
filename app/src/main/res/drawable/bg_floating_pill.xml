@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="24dp" />
+    <gradient
+        android:angle="270"
+        android:startColor="@color/liquid_dock_gradient_start"
+        android:endColor="@color/liquid_dock_gradient_end"
+        android:type="linear" />
+    <stroke
+        android:width="1.2dp"
+        android:color="@color/liquid_glass_specular" />
+</shape>

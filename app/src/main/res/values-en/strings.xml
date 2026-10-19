@@ -1,0 +1,550 @@
+<resources>
+    <string name="app_name">HDify</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="nav_home">Home</string>
+    <string name="nav_queue">Queue</string>
+    <string name="nav_history">History</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">HDify</string>
+    <string name="home_subtitle">On-Device Image &amp; Video Enhancer</string>
+    <string name="card_image_title">Image Upscaling</string>
+    <string name="card_image_desc">Enhance image resolution x2, x3, and x4 with Vulkan GPU AI models.</string>
+    <string name="card_video_title">Video Upscaling &amp; Interpolation</string>
+    <string name="card_video_desc">Enhance video resolution and frame rate with hardware codecs and GPU acceleration.</string>
+    <string name="hw_status_title">Hardware Acceleration Status</string>
+    <string name="hw_status_vulkan_active">GPU: Vulkan active (%1$s)</string>
+    <string name="hw_status_vulkan_disabled">GPU: Vulkan unavailable</string>
+    <string name="hw_status_checking">Checking hardware support...</string>
+
+    <!-- Queue Screen -->
+    <string name="queue_title">Processing Queue</string>
+    <string name="queue_empty_title">Queue is Empty</string>
+    <string name="queue_empty_desc">No active or pending image/video processing jobs.</string>
+
+    <!-- History Screen -->
+    <string name="history_title">Job History</string>
+    <string name="history_empty_title">No History Yet</string>
+    <string name="history_empty_desc">Previous image and video processing records will appear here.</string>
+    <string name="btn_clear_history">Clear All</string>
+    <string name="dialog_clear_history_title">Clear All History?</string>
+    <string name="dialog_clear_history_msg">Are you sure you want to delete all job history records? This action cannot be undone.</string>
+    <string name="dialog_delete_job_title">Delete Job Record</string>
+    <string name="dialog_delete_job_msg">Delete job #%1$d from history?</string>
+    <string name="job_detail_title">Queue Job Details</string>
+    <string name="history_detail_title">History Job Details</string>
+    <string name="action_open_file">Open File</string>
+    <string name="action_share_file">Share</string>
+    <string name="action_delete_record">Delete Record</string>
+    <string name="btn_cancel_job">Cancel Job</string>
+    <string name="detail_label_media">Media Type</string>
+    <string name="detail_label_engine">AI Engine</string>
+    <string name="detail_label_scale">Resolution Scale</string>
+    <string name="detail_label_status">Status</string>
+    <string name="detail_label_time">Timestamp</string>
+    <string name="detail_label_frames">Frame Progress</string>
+    <string name="detail_label_source">Source File</string>
+    <string name="detail_label_output">Output File</string>
+    <string name="detail_label_error">Error Details</string>
+    <string name="history_deleted_snackbar">Job record deleted successfully</string>
+    <string name="history_cleared_snackbar">All history records cleared</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="section_diagnostics">Diagnostics &amp; System</string>
+    <string name="menu_hardware_info">Hardware Information</string>
+    <string name="menu_hardware_info_desc">Inspect GPU Vulkan details, memory allocation, and hardware codecs</string>
+    <string name="menu_logs">Logs &amp; Crash Reports</string>
+    <string name="menu_logs_desc">View session logs, error traces, and export diagnostic data</string>
+    <string name="section_general">General Preferences</string>
+    <string name="setting_language">App Language</string>
+    <string name="lang_system">System</string>
+    <string name="lang_indonesian">Indonesian</string>
+    <string name="lang_english">English</string>
+    <string name="setting_theme">Theme Mode</string>
+    <string name="theme_system">Follow System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="setting_verbose_log">Verbose Logging</string>
+    <string name="setting_verbose_log_desc">Write detailed compute activity to local log files</string>
+    <string name="setting_allow_cpu">Allow CPU Fallback</string>
+    <string name="setting_allow_cpu_desc">Warning: AI processing on CPU takes significantly longer (default: Disabled)</string>
+
+    <!-- Hardware Info Screen -->
+    <string name="hardware_info_title">Hardware Information</string>
+    <string name="gpu_section_title">GPU &amp; Vulkan Compute</string>
+    <string name="gpu_name_label">GPU Name:</string>
+    <string name="gpu_type_label">Device Type:</string>
+    <string name="gpu_api_label">Vulkan API Version:</string>
+    <string name="gpu_driver_label">Driver Version:</string>
+    <string name="gpu_heap_label">Memory Heap Size:</string>
+    <string name="gpu_fp16_storage_label">FP16 Storage Support:</string>
+    <string name="gpu_fp16_arith_label">FP16 Arithmetic Support:</string>
+    <string name="gpu_count_label">GPU Count:</string>
+    <string name="gpu_supported">Supported</string>
+    <string name="gpu_not_supported">Not Supported</string>
+
+    <string name="codec_section_title">Hardware Codecs (MediaCodec)</string>
+    <string name="codec_avc_dec">H.264 / AVC Decoder:</string>
+    <string name="codec_avc_enc">H.264 / AVC Encoder:</string>
+    <string name="codec_hevc_dec">H.265 / HEVC Decoder:</string>
+    <string name="codec_hevc_enc">H.265 / HEVC Encoder:</string>
+    <string name="codec_available">Available (Hardware Accelerated)</string>
+    <string name="codec_not_available">Not Available</string>
+    <string name="btn_self_test">Run GPU Self-Test</string>
+    <string name="btn_export_diagnostics">Export Diagnostic Package (ZIP)</string>
+    <string name="self_test_success">Self-test succeeded: GPU Vulkan pipeline is operating normally.</string>
+    <string name="self_test_failed">Self-test failed with code %1$s.</string>
+
+    <!-- Log & Crash Report Screen -->
+    <string name="log_screen_title">Logs &amp; Diagnostic Reports</string>
+    <string name="filter_all">All</string>
+    <string name="filter_info">INFO</string>
+    <string name="filter_warn">WARN</string>
+    <string name="filter_error">ERROR</string>
+    <string name="filter_crashes">Crashes Only</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_share">Share</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_back">Back</string>
+    <string name="action_close">Close</string>
+    <string name="logs_empty">No log records found for this category.</string>
+    <string name="logs_cleared">Log entries cleared successfully.</string>
+    <string name="logs_copied">Logs copied to clipboard.</string>
+
+    <!-- Debug Crash Testing -->
+    <string name="debug_section_title">System Testing (Debug Build Only)</string>
+    <string name="btn_test_kotlin_crash">Test Kotlin Error</string>
+    <string name="btn_test_native_crash">Test Native Error</string>
+
+    <!-- Crash Startup Dialog -->
+    <string name="crash_dialog_title">App Stopped Unexpectedly</string>
+    <string name="crash_dialog_msg">During the previous session the app stopped unexpectedly: %1$s.\n\nA report was saved for diagnostic analysis.</string>
+    <string name="crash_dialog_view">View Report</string>
+    <string name="crash_dialog_share">Share Diagnostics</string>
+    <string name="crash_dialog_dismiss">Dismiss</string>
+
+    <!-- Recovery Dialog -->
+    <string name="recovery_dialog_title">Resume Interrupted Job</string>
+    <string name="recovery_dialog_msg">An unfinished processing job was detected:\n\nJob #%1$d (%2$s)\nLast progress: %3$d%%\n\nWould you like to resume this job in the background?</string>
+    <string name="btn_resume_job">Resume Job</string>
+    <string name="btn_discard_job">Discard Job</string>
+
+    <!-- Error Codes & Common Messages -->
+    <string name="placeholder_dash">-</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_redo">Redo</string>
+    <string name="action_exit">Exit</string>
+    <string name="dialog_clear_logs_message">Are you sure you want to clear all log and crash records?</string>
+    <string name="dialog_test_crash_title">Test Diagnostic: %1$s</string>
+    <string name="dialog_test_crash_message">This action triggers a planned error to validate crash recovery handling. Proceed?</string>
+    <string name="btn_trigger_crash">Trigger Error</string>
+
+    <string name="error_vulkan_init">HD-HW-101: Vulkan is unavailable on this device.</string>
+    <string name="error_gpu_alloc">HD-HW-105: GPU memory allocation failed.</string>
+    <string name="error_generic">An error occurred</string>
+    <string name="export_success">Diagnostic package exported to %1$s</string>
+    <string name="export_failed">Failed to export diagnostic package: %1$s</string>
+
+    <!-- Image Upscale Screen -->
+    <string name="image_screen_title">Image Upscale</string>
+    <string name="image_screen_subtitle">Enhance photo and illustration resolution up to 4K</string>
+    <string name="btn_pick_image">Select Image</string>
+    <string name="pick_image_hint">Supports JPG, PNG, WebP, and HEIC/HEIF</string>
+    <string name="scale_selector_label">Resolution Scale</string>
+    <string name="scale_2x">x2</string>
+    <string name="scale_3x">x3</string>
+    <string name="scale_4x">x4</string>
+    <string name="content_type_label">Content Type &amp; Engine</string>
+    <string name="content_type_anime_cugan">Illustration / 2D (Real-CUGAN Vulkan)</string>
+    <string name="model_variant_label">Real-CUGAN Model Variant</string>
+    <string name="model_se_label">Standard (se)</string>
+    <string name="model_pro_label">High Quality (pro)</string>
+    <string name="denoise_level_label">Noise Reduction (Denoise)</string>
+    <string name="denoise_conservative">Conservative (-1)</string>
+    <string name="denoise_none">No Denoise (0)</string>
+    <string name="denoise_1x">Denoise 1x</string>
+    <string name="denoise_2x">Denoise 2x</string>
+    <string name="denoise_3x">Denoise 3x</string>
+    <string name="btn_preview_crop">Crop Preview</string>
+    <string name="btn_start_upscale">Start Upscale</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Result Screen -->
+    <string name="result_title">Processing Result</string>
+    <string name="result_slider_hint">Drag slider to compare • Pinch or double tap to zoom</string>
+    <string name="result_details_header">Processing Details</string>
+    <string name="result_label_dimensions">Output Resolution:</string>
+    <string name="result_label_duration">Processing Duration:</string>
+    <string name="result_label_backend">Hardware Acceleration:</string>
+    <string name="result_label_location">Saved Location:</string>
+    <string name="btn_share">Share</string>
+    <string name="btn_open_gallery">Open in Gallery</string>
+    <string name="btn_done">Done</string>
+    <string name="dialog_crop_preview_title">Crop Preview (256x256)</string>
+    <string name="crop_preview_desc">Quick preview of center area before processing the entire image.</string>
+
+    <!-- Content Type & Presets -->
+    <string name="content_type_anime">Illustration / 2D</string>
+    <string name="content_type_photo">Real Photo / General</string>
+    <string name="preset_label">Performance Preset</string>
+    <string name="preset_fast">Fast</string>
+    <string name="preset_balanced">Balanced</string>
+    <string name="preset_quality">Quality</string>
+    <string name="btn_advanced_settings">Advanced Settings</string>
+
+    <!-- Custom Target Size -->
+    <string name="custom_size_switch">Custom Target Resolution</string>
+    <string name="custom_width_hint">Width (px)</string>
+    <string name="custom_height_hint">Height (px)</string>
+    <string name="custom_size_warning">Custom target size will be adjusted using high-precision interpolation.</string>
+
+    <!-- Advanced Bottom Sheet -->
+    <string name="dialog_advanced_title">Advanced Settings</string>
+    <string name="dialog_advanced_subtitle">Configure engine, tiling, and compute acceleration</string>
+    <string name="engine_selector_label">Upscaler Engine</string>
+    <string name="engine_realcugan">Real-CUGAN (Illustration)</string>
+    <string name="engine_realesrgan">Real-ESRGAN (Real Photo)</string>
+    <string name="model_selector_label">Select Model</string>
+    <string name="tile_size_slider_label">Tile Size: %1$d px</string>
+    <string name="tile_size_auto">Auto (Adaptive to GPU VRAM)</string>
+    <string name="toggle_fp16">Use FP16 Precision (Fast)</string>
+    <string name="toggle_fp16_desc">Disable to use FP32 if your GPU produces visual artifacts</string>
+    <string name="toggle_tta">TTA Mode (Test-Time Augmentation)</string>
+    <string name="toggle_tta_desc">Increases sharpness via 8x rotational inference passes (takes longer)</string>
+    <string name="btn_save_apply">Save &amp; Apply</string>
+
+    <!-- Batch Processing -->
+    <string name="batch_selected_count">%1$d images selected</string>
+    <string name="btn_start_batch_upscale">Start Queue (%1$d Images)</string>
+    <string name="btn_pick_multi_image">Select Images (Single / Batch)</string>
+
+    <!-- Benchmark Screen -->
+    <string name="benchmark_title">Diagnostic Benchmark</string>
+    <string name="benchmark_desc">Benchmark GPU Vulkan compute throughput on standard 256×256 tiles for Real-CUGAN and Real-ESRGAN.</string>
+    <string name="btn_run_benchmark">Run Benchmark</string>
+    <string name="benchmark_running">Running GPU inference benchmark...</string>
+    <string name="benchmark_ms_per_tile">%1$d ms / tile</string>
+    <string name="benchmark_est_1080p">Estimated 1080p Photo: %1$.1f sec</string>
+    <string name="benchmark_est_video_720p">Estimated 720p/30fps Video: %1$.1f sec / min</string>
+    <string name="benchmark_vulkan_passed">Passed Vulkan compute test</string>
+    <string name="benchmark_vulkan_failed">Failed: %1$s</string>
+    <string name="menu_benchmark">Performance Benchmark</string>
+    <string name="menu_benchmark_desc">Evaluate GPU tile inference latency and hardware throughput</string>
+
+    <!-- Video Upscale -->
+    <string name="video_screen_title">Video Upscale</string>
+    <string name="video_screen_subtitle">Video super-resolution and 60 FPS interpolation</string>
+    <string name="btn_pick_video">Select Video</string>
+    <string name="pick_video_hint">Supports MP4, MOV, and MKV files (H.264 / HEVC)</string>
+    <string name="card_video_metadata_title">Source Video Information</string>
+    <string name="video_meta_resolution">Resolution: %1$d × %2$d px</string>
+    <string name="video_meta_fps">Frame Rate: %1$.1f FPS</string>
+    <string name="video_meta_duration">Duration: %1$s</string>
+    <string name="video_meta_codec">Codec: %1$s</string>
+    <string name="video_meta_bitrate">Bitrate: %1$s</string>
+    <string name="codec_selector_label">Target Video Encoder</string>
+    <string name="codec_hevc">HEVC (H.265)</string>
+    <string name="codec_h264">H.264 (AVC)</string>
+    <string name="quality_slider_label">Bitrate Quality: %1$d%%</string>
+    <string name="card_summary_title">Configuration Summary</string>
+    <string name="summary_output_res">Output Resolution: %1$d × %2$d px</string>
+    <string name="summary_est_time">Estimated Duration: %1$s</string>
+    <string name="summary_est_size">Estimated File Size: ~%1$s</string>
+    <string name="btn_preview_3s">3s Preview</string>
+    <string name="btn_start_video_upscale">Start Video Upscale</string>
+    <string name="scale_1x">1x (No Upscale)</string>
+    <string name="fps_interpolation_toggle">FPS Interpolation (RIFE)</string>
+    <string name="fps_interpolation_hint">AI frame generation for smoother video playback</string>
+    <string name="interp_factor_label">Frame Rate Multiplier</string>
+    <string name="interp_factor_2x">2x FPS</string>
+    <string name="interp_factor_3x">3x FPS</string>
+    <string name="interp_factor_4x">4x FPS</string>
+    <string name="interp_target_fps">Target Frame Rate: %1$.1f FPS (Source: %2$.1f FPS)</string>
+    <string name="interp_fps_warning">Target frame rate exceeds hardware encoder limits (%2$d FPS) or maximum 120 FPS. Target adjusted automatically.</string>
+    <string name="interp_pipeline_order_desc">Sequence: Frame Interpolation followed by Resolution Upscale</string>
+    <string name="interp_uhd_mode_title">UHD Mode (Resolution &gt;= 2K)</string>
+    <string name="interp_uhd_mode_desc">Optimized optical flow calculation for high resolutions</string>
+    <string name="interp_no_action_warning">Please select at least one feature: Upscale Scale (&gt; 1x) or Frame Interpolation.</string>
+    <string name="summary_output_fps">Output Frame Rate: %1$.1f FPS</string>
+    <string name="encoder_unsupported_warning">Warning: Resolution %1$d×%2$d exceeds device hardware encoder capabilities (%3$d×%4$d). Please select a smaller scale.</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_resume">Resume</string>
+    <string name="video_processing_progress">Processing frame %1$d/%2$d (%3$d%%)</string>
+    <string name="storage_insufficient_error">Insufficient storage space to process this video.</string>
+    <string name="btn_play">Play</string>
+    <string name="share_video_title">Share Video</string>
+    <string name="no_gallery_app">No video player app found</string>
+
+    <!-- Video Orientation & Save -->
+    <string name="video_orientation_title">Orientation Adjustment</string>
+    <string name="video_orientation_subtitle">Adjust video rotation or mirror settings</string>
+    <string name="btn_rotate_format">Rotate (%1$d°)</string>
+    <string name="btn_mirror_format">Mirror: %1$s</string>
+    <string name="mirror_on">On</string>
+    <string name="mirror_off">Off</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_save_video">Save to Gallery</string>
+    <string name="btn_saving_video">Saving to Gallery...</string>
+
+    <!-- Background Rendering Notifications -->
+    <string name="notif_channel_processing_name">HDify Background Processing</string>
+    <string name="notif_channel_processing_desc">Displays media processing progress in the background</string>
+    <string name="notif_channel_completed_name">HDify Results &amp; Notifications</string>
+    <string name="notif_channel_completed_desc">Notifications upon media completion or errors</string>
+    <string name="notif_image_processing_title">Processing Image (x%1$d)</string>
+    <string name="notif_video_processing_title">Processing Video (x%1$d)</string>
+    <string name="notif_preparing">Preparing processing...</string>
+    <string name="notif_paused_title">Process Paused</string>
+    <string name="notif_completed_title">Processing Completed</string>
+    <string name="notif_completed_image_msg">Image resolution enhanced successfully (%1$d × %2$d px).</string>
+    <string name="notif_completed_video_msg">Video successfully processed and ready for viewing.</string>
+    <string name="notif_permission_rationale">Notification permission is required to monitor processing progress in the background.</string>
+    <string name="notif_compress_title">Compressing Video</string>
+    <string name="notif_compress_preparing">Preparing video compression...</string>
+    <string name="notif_compress_success_title">Video Compression Completed</string>
+    <string name="notif_compress_success_msg">Size reduced by %1$d%% (to %2$s).</string>
+    <string name="notif_compress_failed_title">Video Compression Failed</string>
+    <string name="notif_download_title">Downloading Media</string>
+    <string name="notif_download_starting">Connecting to media server...</string>
+    <string name="notif_download_success_title">Download Completed</string>
+    <string name="notif_download_success_msg">File saved: %1$s</string>
+    <string name="notif_download_failed_title">Download Failed</string>
+    <string name="notif_bg_removed_saved_title">Background Removed</string>
+    <string name="notif_bg_removed_saved_msg">Cutout image saved to Gallery.</string>
+    <string name="notif_bg_removed_failed_title">Failed to Save Image</string>
+    <string name="notif_queue_completed_title">HDify Queue Completed</string>
+    <string name="notif_queue_completed_msg">All queued tasks finished: %1$d succeeded, %2$d failed.</string>
+    <string name="notif_job_failed_title">Job #%1$d Failed</string>
+    <string name="notif_image_failed_title">Image Upscale Failed</string>
+    <string name="notif_video_failed_title">Video Upscale Failed</string>
+    <string name="notif_action_open_file">Open File</string>
+
+    <!-- Media Downloader -->
+    <string name="card_downloader_title">Media Downloader</string>
+    <string name="card_downloader_desc">Download videos, audio, and photos from social media platforms without watermark.</string>
+    <string name="downloader_title">Media Downloader</string>
+    <string name="downloader_subtitle">Download videos and photos without watermark</string>
+    <string name="downloader_input_hint">Paste media link here...</string>
+    <string name="downloader_btn_paste">Paste</string>
+    <string name="downloader_btn_analyze">Analyze Link</string>
+    <string name="downloader_analyzing">Analyzing media link...</string>
+    <string name="downloader_select_quality">Select Format &amp; Quality:</string>
+    <string name="downloader_btn_download">Download to Gallery</string>
+    <string name="downloader_downloading_title">Downloading Media...</string>
+    <string name="downloader_success_title">Download Complete</string>
+    <string name="downloader_success_desc">File successfully saved to your device gallery.</string>
+    <string name="downloader_btn_open_video_upscaler">Open in Video Upscaler</string>
+    <string name="downloader_btn_open_image_upscaler">Open in Image Upscaler</string>
+    <string name="downloader_btn_download_again">Download Another Link</string>
+    <string name="downloader_carousel_title">Slide Selection</string>
+    <string name="downloader_preview_title">Play &amp; Preview Media</string>
+    <string name="downloader_capabilities_title">Downloader Features</string>
+    <string name="downloader_capabilities_desc">• Instagram Carousel: Multi-slide video and photo detection\n• SoundCloud HD: High-quality audio with album artwork\n• Integrated Preview: Built-in audio and video player prior to downloading\n• Integrity Verification: Accurate download progress and file size tracking\n• AI Upscaler: Seamless handoff to 4K resolution or 60 FPS enhancement</string>
+    <string name="downloader_clipboard_detected">Link detected in clipboard</string>
+    <string name="downloader_status_downloading">Downloading...</string>
+    <string name="downloader_hint_video_tap">Tap video to pause or resume playback</string>
+    <string name="downloader_hint_audio_tap">Tap to pause or play audio</string>
+    <string name="downloader_video_unsupported_preview">Streaming format is not supported for preview. You can still download the file to gallery.</string>
+    <string name="downloader_audio_unsupported_preview">Audio stream cannot be played directly. You can download the file to gallery.</string>
+    <string name="downloader_audio_play_failed">Failed to play audio: %1$s</string>
+    <string name="downloader_option_audio_title">Audio / Music</string>
+    <string name="downloader_option_audio_desc">High-quality MP3 format</string>
+    <string name="downloader_option_image_desc">Original quality without extra compression</string>
+    <string name="downloader_option_standard_desc">Standard quality</string>
+
+    <!-- Background Remover -->
+    <string name="card_bg_remover_title">Background Remover</string>
+    <string name="card_bg_remover_desc">Isolate photo subjects automatically with AI (Transparent PNG, ID photo, or custom colors).</string>
+    <string name="bg_remover_title">Background Remover</string>
+    <string name="bg_remover_subtitle">On-Device AI Subject Segmentation</string>
+    <string name="bg_remover_pick_image">Select Photo from Gallery</string>
+    <string name="bg_remover_change_image">Change Photo</string>
+    <string name="bg_remover_processing">Segmenting background with AI...</string>
+    <string name="bg_remover_select_bg">Background Color Options</string>
+    <string name="bg_option_transparent">Transparent</string>
+    <string name="bg_option_white">White</string>
+    <string name="bg_option_red">Red</string>
+    <string name="bg_option_blue">Blue</string>
+    <string name="bg_option_black">Black</string>
+    <string name="bg_option_custom">Custom...</string>
+    <string name="bg_btn_auto_remove_ai">Auto Segmentation (AI)</string>
+    <string name="bg_btn_auto_remove_ai_running">Extracting Subject with AI...</string>
+    <string name="bg_tools_section_label">Manual Refinement Tools</string>
+    <string name="bg_tool_magic">Auto Color</string>
+    <string name="bg_tool_erase">Erase</string>
+    <string name="bg_tool_restore">Restore</string>
+    <string name="bg_tool_pan">Pan &amp; Zoom</string>
+    <string name="bg_tool_reset">Reset AI</string>
+    <string name="bg_tool_magic_tip">Touch a background color on the image to automatically remove connected areas.</string>
+    <string name="bg_tool_pan_tip">Drag screen to pan, pinch to zoom from 1x to 6x.</string>
+    <string name="bg_tolerance_label">Color Tolerance:</string>
+    <string name="bg_magic_contiguous">Connected pixels only</string>
+    <string name="bg_brush_size_label">Brush Size:</string>
+    <string name="bg_remover_save">Save to Gallery</string>
+    <string name="bg_remover_open_upscaler">Continue to AI Upscaler</string>
+    <string name="bg_remover_success">Photo successfully saved to gallery</string>
+    <string name="bg_remover_failed">Failed to process photo background</string>
+    <string name="bg_remover_pick_hint">Select a photo to remove the background</string>
+    <string name="bg_remover_pick_subhint">Supports AI automatic segmentation and manual touch-ups</string>
+    <string name="bg_remover_tools_hint">Erase brush, restore, or automatic color detection</string>
+    <string name="bg_remover_bg_hint">Transparent or formal ID photo colors</string>
+    <string name="bg_remover_upscale_hint">Enhance cutout subject resolution up to 4K</string>
+    <string name="bg_remover_toast_mask_reset">Mask restored to AI segmentation result</string>
+    <string name="bg_remover_toast_auto_success">Background removed successfully</string>
+    <string name="bg_remover_toast_auto_failed">Failed to process AI segmentation</string>
+    <string name="bg_remover_toast_save_failed">Failed to save photo to gallery</string>
+    <string name="bg_remover_toast_prepare_failed">Failed to prepare image</string>
+    <string name="bg_remover_saved_badge">Saved to Gallery</string>
+
+    <!-- Custom Color Picker Dialog -->
+    <string name="color_picker_title">Select Background Color</string>
+    <string name="color_picker_subtitle">Adjust color using RGB sliders or enter a HEX code</string>
+    <string name="color_picker_popular">Standard Colors:</string>
+    <string name="color_picker_red">Red (R)</string>
+    <string name="color_picker_green">Green (G)</string>
+    <string name="color_picker_blue">Blue (B)</string>
+    <string name="color_picker_hex_hint">HEX Color Code</string>
+    <string name="color_picker_btn_cancel">Cancel</string>
+    <string name="color_picker_btn_apply">Apply Color</string>
+    <string name="preview_hint_tap">Tap media to pause or resume playback</string>
+
+    <!-- Zoom & Detail Badges -->
+    <string name="btn_zoom_fit">Fit</string>
+    <string name="btn_zoom_100">100% Detail</string>
+    <string name="scale_badge_2x">2x Scale • 4x Pixel Density</string>
+    <string name="scale_badge_3x">3x Scale • 9x Pixel Density</string>
+    <string name="scale_badge_4x">4x Scale • 16x Pixel Density Ultra HD</string>
+
+    <!-- App Credits & Developer -->
+    <string name="home_hero_badge">Material You • Monochrome Edition</string>
+    <string name="home_dev_credit">Developed by Yuuka • Visit TikTok</string>
+    <string name="settings_dev_desc">@yuukaonlyone_ • Tap to visit TikTok profile</string>
+    <string name="settings_dev_title">Developed by Yuuka</string>
+    <string name="section_developer">Developer &amp; About</string>
+
+    <!-- Home Badges -->
+    <string name="home_badge_image">Real-CUGAN &amp; ESRGAN • Up to 4x</string>
+    <string name="home_badge_bg">AI Auto Segmentation • Precision</string>
+    <string name="home_badge_video">RIFE v4.6 • 60 FPS • Hardware HEVC</string>
+    <string name="home_badge_downloader">Multiplatform • Original Quality</string>
+
+    <!-- Video Compressor -->
+    <string name="card_compressor_title">Video Compression</string>
+    <string name="card_compressor_desc">Compress video file size with high efficiency without degrading visual quality.</string>
+    <string name="compressor_badge_text">Source Resolution • 60 FPS • Hardware VBR</string>
+    <string name="compressor_title">Video Compression</string>
+    <string name="compressor_subtitle">File size optimization for social media uploads</string>
+    <string name="compressor_btn_pick">Select Video from Gallery</string>
+    <string name="compressor_pick_hint">Supports MP4, MOV, and MKV files (H.264 / HEVC)</string>
+    <string name="compressor_btn_change_video">Change Video</string>
+    <string name="compressor_source_title">Source Video Information</string>
+    <string name="compressor_label_size">File Size:</string>
+    <string name="compressor_presets_title">Select Compression Mode</string>
+    <string name="compressor_presets_subtitle">Resolution and frame rate preserved from source file</string>
+    <string name="compressor_preset_original_high">Maximum Quality (~30%% compression)\nSource resolution &amp; FPS • Optimal visual quality</string>
+    <string name="compressor_preset_original_balanced">Balanced (~50%% compression)\nSource resolution &amp; FPS • Optimal size reduction</string>
+    <string name="compressor_preset_original_saver">Storage Saver (~70%% compression)\nSource resolution &amp; FPS • Minimal file size</string>
+    <string name="compressor_preset_custom">Custom\nManual configuration of bitrate, resolution, and codec</string>
+    <string name="compressor_custom_bitrate_label">Target Bitrate: %1$.1f Mbps</string>
+    <string name="compressor_custom_res_label">Target Resolution Cap</string>
+    <string name="compressor_custom_codec_label">Target Codec</string>
+    <string name="compressor_keep_fps_label">Keep Source Frame Rate</string>
+    <string name="compressor_force_hdr_label">Dynamic HDR Visual Effect</string>
+    <string name="compressor_force_hdr_desc">Enhances dynamic contrast range and shadow detail clarity without color distortion.</string>
+    <string name="compressor_estimation_title">Compression Estimation</string>
+    <string name="compressor_btn_start">Start Video Compression</string>
+    <string name="compressor_processing_title">Compressing Video with GPU...</string>
+    <string name="compressor_progress_format">Frame %1$d/%2$d • %3$.1f FPS • ETA ~%4$ds</string>
+    <string name="compressor_success_title">Compression Complete</string>
+    <string name="compressor_success_desc">Video successfully optimized and ready for use.</string>
+    <string name="compressor_stat_orig_size">Original Size:</string>
+    <string name="compressor_stat_new_size">Compressed Size:</string>
+    <string name="compressor_stat_savings">Storage Saved:</string>
+    <string name="compressor_btn_play">Play Video</string>
+    <string name="compressor_btn_share">Share Video</string>
+    <string name="compressor_btn_again">Compress Another Video</string>
+    <string name="compressor_pick_title">Select Video to Compress</string>
+    <string name="compressor_res_original">Original</string>
+    <string name="compressor_res_1080p">1080p</string>
+    <string name="compressor_res_720p">720p</string>
+    <string name="compressor_codec_h264">H.264 (AVC)</string>
+    <string name="compressor_codec_hevc">HEVC (H.265)</string>
+    <string name="compressor_tip_desc">Video is optimized with standard bitrate to prevent excessive re-encoding on social media platforms.</string>
+    <string name="compressor_source_size_format">Size: %1$s</string>
+    <string name="compressor_tag_original">(Original)</string>
+    <string name="compressor_badge_savings_format">Saved ~%1$d%% • Resolution %2$s • %3$s%4$s</string>
+    <string name="compressor_badge_normal_format">Resolution %1$s • %2$s • %3$s%4$s</string>
+    <string name="compressor_badge_hdr_tag"> • HDR Effect</string>
+    <string name="compressor_stat_savings_format">%1$d%% Smaller</string>
+    <string name="compressor_share_failed">Failed to share video: %1$s</string>
+
+    <!-- AI Models Catalog & Explanation -->
+    <string name="menu_ai_models_title">AI Models &amp; Engine Catalog</string>
+    <string name="menu_ai_models_desc">List of 24+ local neural network models and NCNN Vulkan compute libraries</string>
+    <string name="dialog_ai_models_title">AI Models &amp; Engine Catalog</string>
+    <string name="dialog_ai_models_subtitle">On-Device Processing • Guaranteed Privacy • Zero Cloud Server</string>
+    <string name="dialog_ai_models_faq_title">Application Size Information</string>
+    <string name="dialog_ai_models_faq_desc">HDify bundles all deep learning models and Vulkan acceleration engines directly within the app. All processing runs entirely on-device without internet connection and without transmitting data to external servers.</string>
+    <string name="dialog_ai_models_cugan_title">Real-CUGAN SE &amp; Pro</string>
+    <string name="dialog_ai_models_cugan_badge">18 Models • ~40.5 MB</string>
+    <string name="dialog_ai_models_cugan_desc">Super-resolution model for illustrations and 2D content with high-precision line reconstruction.</string>
+    <string name="dialog_ai_models_cugan_details">• SE Models: Optimized for mobile efficiency (x2, x3, x4)\n• Pro Models: Maximum detail reconstruction (x2, x3)</string>
+    <string name="dialog_ai_models_esrgan_title">Real-ESRGAN</string>
+    <string name="dialog_ai_models_esrgan_badge">5 Models • ~46.0 MB</string>
+    <string name="dialog_ai_models_esrgan_desc">General super-resolution model for restoring real photos, landscapes, and natural textures.</string>
+    <string name="dialog_ai_models_esrgan_details">• realesrgan-x4plus: Comprehensive model for realistic photos\n• realesrgan-x4plus-anime: Optimized for complex illustrations\n• realesr-animevideov3: Fast inference model for video frames</string>
+    <string name="dialog_ai_models_rife_title">RIFE v4.6 FlowNet</string>
+    <string name="dialog_ai_models_rife_badge">10.6 MB • 60/120 FPS</string>
+    <string name="dialog_ai_models_rife_desc">Optical flow frame interpolation model to enhance video smoothness up to 60 or 120 FPS.</string>
+    <string name="dialog_ai_models_rife_details">• rife-v4.6/flownet: Real-time on-device inter-frame motion estimation</string>
+    <string name="dialog_ai_models_vulkan_title">Vulkan Compute Libraries (Universal ABI)</string>
+    <string name="dialog_ai_models_vulkan_badge">Universal • ~120+ MB</string>
+    <string name="dialog_ai_models_vulkan_desc">Includes 64-bit and 32-bit native C++ libraries for full compatibility across processor architectures:</string>
+    <string name="dialog_ai_models_vulkan_details">• arm64-v8a: Modern Android devices\n• armeabi-v7a: 32-bit Android devices\n• x86_64: Android emulators and PC devices\n• x86: 32-bit emulators</string>
+    <string name="dialog_ai_models_summary_title">System Summary &amp; Privacy</string>
+    <string name="dialog_ai_models_summary_desc">• Total Models: 24+ on-device neural network models\n• Privacy: 100% on-device processing with zero cloud connection\n• Efficiency: Zero internet data usage during AI rendering\n• Acceleration: Vulkan GPU compute for optimal performance</string>
+    <string name="dialog_ai_models_btn_close">Close</string>
+
+    <!-- Dynamic Status & Processing Strings -->
+    <string name="status_cancelling">Cancelling process...</string>
+    <string name="warning_large_resolution">Warning: Output resolution (%1$d×%2$d, %3$d MP) is very high. Processing may take longer.</string>
+    <string name="status_processing_tile">Processing tile %1$d/%2$d (%3$d%%)</string>
+    <string name="status_processing_frame">Processing frame %1$d/%2$d (%3$d%%)%4$s</string>
+    <string name="status_preparing_engine">Preparing AI engine...</string>
+    <string name="status_preparing_pipeline">Preparing video pipeline...</string>
+    <string name="dialog_upscale_failed_title">Upscale Failed</string>
+    <string name="dialog_video_upscale_failed_title">Video Upscale Failed</string>
+    <string name="dialog_notice_title">Notice</string>
+    <string name="dialog_unsaved_video_title">Unsaved Video</string>
+    <string name="dialog_unsaved_video_desc">The processed video has not been saved to the gallery. Exiting now will discard the temporary file.</string>
+    <string name="action_share_image">Share Image</string>
+    <string name="result_duration_format">%.2f seconds</string>
+    <string name="result_unsaved_draft">Not saved (Draft)</string>
+    <string name="toast_save_first">Please save video to gallery first</string>
+    <string name="toast_no_gallery">Gallery app not found</string>
+    <string name="toast_draft_not_found">Draft file not found</string>
+    <string name="toast_video_cache_not_found">Video file in cache not found</string>
+    <string name="toast_video_save_success">Video successfully saved to gallery</string>
+    <string name="toast_video_save_failed">Failed to save video: %1$s</string>
+    <string name="toast_tiktok_open_failed">Failed to open TikTok link</string>
+    <string name="media_image">Image</string>
+    <string name="media_video">Video</string>
+    <string name="job_title_format">Job #%1$d (%2$s)</string>
+    <string name="job_scale_format">Scale x%1$d</string>
+    <string name="status_processing">Processing</string>
+    <string name="status_waiting">Pending</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_failed">Failed</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="status_queued">In queue</string>
+    <string name="status_progress_percent">%1$d%% completed</string>
+    <string name="scale_short_format">x%1$d</string>
+    <string name="scale_short_1x">x1</string>
+    <string name="label_preview">Preview</string>
+</resources>

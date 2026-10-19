@@ -1,0 +1,34 @@
+# ==========================================
+# HDify - Cross-Platform Git Ignore Rules
+# ==========================================
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
+*.log
+.idea/
+.vscode/
+*.iml
+
+# Android SDK, Gradle & Compilation Cache
+.gradle/
+.kotlin/
+build/
+app/build/
+app/.cxx/
+local.properties
+.externalNativeBuild/
+captures/
+*.apk
+*.aab
+
+# Node.js & Windows Electron Distribution
+node_modules/
+hdify-windows/node_modules/
+hdify-windows/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

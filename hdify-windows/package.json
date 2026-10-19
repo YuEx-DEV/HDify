@@ -1,0 +1,84 @@
+{
+  "name": "hdify-desktop",
+  "version": "2.2.8",
+  "description": "HDify Ultra HD Engine - Native Windows Desktop Edition",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "clean": "node clean-old-dist.js",
+    "predist": "node clean-old-dist.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postdist": "node -e \"const fs = require('fs'); const path = require('path'); const d = path.join(__dirname, 'dist'); const p = path.join(d, 'win-unpacked'); if (fs.existsSync(p)) fs.rmSync(p, { recursive: true, force: true }); fs.readdirSync(d).forEach(f => { if (f.endsWith('.blockmap') || f.startsWith('builder-')) try { fs.unlinkSync(path.join(d, f)); } catch(_) {} });\""
+  },
+  "build": {
+    "appId": "com.hdify.desktop",
+    "productName": "HDify",
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**/*",
+      "node_modules/ffprobe-static/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "bin",
+        "to": "bin"
+      }
+    ],
+    "files": [
+      "**/*",
+      "!bin/**",
+      "!dist/**",
+      "!*.bat",
+      "!clean-old-dist.js"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "artifactName": "HDify_Setup_v${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "HDify_Portable_v${version}.${ext}"
+    }
+  },
+  "keywords": [
+    "upscaler",
+    "real-cugan",
+    "real-esrgan",
+    "vulkan",
+    "video-enhancer"
+  ],
+  "author": "Yuuka (@yuukaonlyone_)",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "ffprobe-static": "^3.1.0"
+  }
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Status Badge Colors (Dark Monochrome) -->
+    <color name="status_completed_container">#27272A</color>
+    <color name="status_completed_text">#FAFAFA</color>
+    <color name="status_failed_container">#26262B</color>
+    <color name="status_failed_text">#E4E4E7</color>
+    <color name="status_cancelled_container">#1F1F23</color>
+    <color name="status_cancelled_text">#A1A1AA</color>
+    <color name="status_processing_container">#2E2E33</color>
+    <color name="status_processing_text">#FFFFFF</color>
+    <color name="status_pending_container">#232326</color>
+    <color name="status_pending_text">#D4D4D8</color>
+
+    <color name="status_green">#4ADE80</color>
+    <color name="status_red">#F87171</color>
+    <color name="status_orange">#FB923C</color>
+
+    <!-- Material You Monochrome Palette (Dark Mode - OLED Noir & Pure Platinum) -->
+    <color name="window_background_liquid">#000000</color>
+    <color name="liquid_accent_cyan">#FAFAFA</color>
+    <color name="liquid_accent_blue">#E4E4E7</color>
+    <color name="liquid_accent_indigo">#D4D4D8</color>
+    <color name="liquid_accent_purple">#A1A1AA</color>
+    <color name="liquid_accent_pink">#71717A</color>
+
+    <!-- Dock & Navigation (Dark Monochrome: Charcoal Glass Dock, White Active Pill) -->
+    <color name="liquid_dock_gradient_start">#161618</color>
+    <color name="liquid_dock_gradient_end">#111113</color>
+    <color name="liquid_dock_stroke">#404048</color>
+    
+    <!-- Cards & Surfaces (Dark Monochrome: Deep Graphite Surfaces, Minimalist Borders) -->
+    <color name="liquid_card_gradient_start">#161618</color>
+    <color name="liquid_card_gradient_end">#111113</color>
+    <color name="liquid_card_bg">#141416</color>
+    <color name="liquid_card_stroke">#383842</color>
+
+    <color name="liquid_surface_elevated_start">#1C1C1F</color>
+    <color name="liquid_surface_elevated_end">#141416</color>
+
+    <color name="liquid_glass_specular">#2E2E33</color>
+    <color name="liquid_glass_stroke">#444450</color>
+    
+    <color name="liquid_pill_start">#222226</color>
+    <color name="liquid_pill_end">#18181B</color>
+    
+    <!-- Primary Buttons (Dark Monochrome: Pure Stark White, Black Text) -->
+    <color name="liquid_btn_start">#FFFFFF</color>
+    <color name="liquid_btn_mid">#F4F4F6</color>
+    <color name="liquid_btn_end">#E5E5EA</color>
+    <color name="liquid_btn_stroke">#FFFFFF</color>
+    <color name="liquid_btn_text">#141416</color>
+    <color name="liquid_btn_icon_tint">#141416</color>
+    
+    <!-- Badges & Chips -->
+    <color name="liquid_badge_bg">#25252C</color>
+    <color name="liquid_badge_stroke">#484854</color>
+    <color name="liquid_badge_text">#FAFAFA</color>
+    
+    <!-- Icon Containers -->
+    <color name="liquid_icon_bg_start">#2A2A32</color>
+    <color name="liquid_icon_bg_end">#202026</color>
+    
+    <!-- Bottom Nav Active Pill & Items -->
+    <color name="liquid_nav_active_indicator">#FFFFFF</color>
+    <color name="liquid_nav_item_active">#141416</color>
+    <color name="liquid_nav_item_inactive">#E4E4E7</color>
+    <color name="liquid_nav_text_active">#FFFFFF</color>
+    <color name="liquid_nav_text_inactive">#D4D4D8</color>
+    
+    <!-- Hero Banner Background -->
+    <color name="liquid_hero_start">#1C1C20</color>
+    <color name="liquid_hero_mid">#16161A</color>
+    <color name="liquid_hero_end">#111114</color>
+</resources>

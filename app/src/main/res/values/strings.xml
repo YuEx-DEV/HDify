@@ -1,0 +1,550 @@
+<resources>
+    <string name="app_name">HDify</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="nav_home">Beranda</string>
+    <string name="nav_queue">Antrian</string>
+    <string name="nav_history">Riwayat</string>
+    <string name="nav_settings">Pengaturan</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">HDify</string>
+    <string name="home_subtitle">Peningkat Kualitas Gambar &amp; Video On-Device</string>
+    <string name="card_image_title">Upscale Gambar</string>
+    <string name="card_image_desc">Tingkatkan resolusi gambar x2, x3, dan x4 dengan model AI berbasis GPU Vulkan.</string>
+    <string name="card_video_title">Upscale &amp; Interpolasi Video</string>
+    <string name="card_video_desc">Tingkatkan resolusi dan frame rate video dengan codec hardware serta akselerasi GPU.</string>
+    <string name="hw_status_title">Status Akselerasi Hardware</string>
+    <string name="hw_status_vulkan_active">GPU: Vulkan aktif (%1$s)</string>
+    <string name="hw_status_vulkan_disabled">GPU: Vulkan tidak tersedia</string>
+    <string name="hw_status_checking">Memeriksa dukungan hardware...</string>
+
+    <!-- Queue Screen -->
+    <string name="queue_title">Antrian Pemrosesan</string>
+    <string name="queue_empty_title">Tidak Ada Antrian</string>
+    <string name="queue_empty_desc">Belum ada tugas pemrosesan yang berjalan atau menunggu giliran.</string>
+
+    <!-- History Screen -->
+    <string name="history_title">Riwayat Tugas</string>
+    <string name="history_empty_title">Belum Ada Riwayat</string>
+    <string name="history_empty_desc">Hasil pemrosesan gambar dan video sebelumnya akan dicatat di sini.</string>
+    <string name="btn_clear_history">Hapus Semua</string>
+    <string name="dialog_clear_history_title">Hapus Semua Riwayat?</string>
+    <string name="dialog_clear_history_msg">Apakah Anda yakin ingin menghapus seluruh riwayat tugas pemrosesan? Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="dialog_delete_job_title">Hapus Riwayat Tugas</string>
+    <string name="dialog_delete_job_msg">Hapus riwayat tugas #%1$d dari daftar?</string>
+    <string name="job_detail_title">Rincian Antrean</string>
+    <string name="history_detail_title">Rincian Riwayat</string>
+    <string name="action_open_file">Buka File</string>
+    <string name="action_share_file">Bagikan</string>
+    <string name="action_delete_record">Hapus Riwayat</string>
+    <string name="btn_cancel_job">Batalkan Tugas</string>
+    <string name="detail_label_media">Tipe Media</string>
+    <string name="detail_label_engine">Engine AI</string>
+    <string name="detail_label_scale">Skala Resolusi</string>
+    <string name="detail_label_status">Status</string>
+    <string name="detail_label_time">Waktu Proses</string>
+    <string name="detail_label_frames">Progres Frame</string>
+    <string name="detail_label_source">File Sumber</string>
+    <string name="detail_label_output">File Hasil</string>
+    <string name="detail_label_error">Keterangan Error</string>
+    <string name="history_deleted_snackbar">Riwayat tugas berhasil dihapus</string>
+    <string name="history_cleared_snackbar">Semua riwayat berhasil dibersihkan</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Pengaturan</string>
+    <string name="section_diagnostics">Diagnostik &amp; Sistem</string>
+    <string name="menu_hardware_info">Informasi Hardware</string>
+    <string name="menu_hardware_info_desc">Periksa spesifikasi GPU Vulkan, alokasi memori, dan codec hardware</string>
+    <string name="menu_logs">Log &amp; Laporan Kerusakan</string>
+    <string name="menu_logs_desc">Lihat catatan sesi pemrosesan, laporan error, dan ekspor data diagnostik</string>
+    <string name="section_general">Preferensi Umum</string>
+    <string name="setting_language">Bahasa Aplikasi</string>
+    <string name="lang_system">Sistem</string>
+    <string name="lang_indonesian">Indonesia</string>
+    <string name="lang_english">English</string>
+    <string name="setting_theme">Tema Tampilan</string>
+    <string name="theme_system">Ikuti Sistem</string>
+    <string name="theme_light">Terang</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="setting_verbose_log">Mode Log Verbose</string>
+    <string name="setting_verbose_log_desc">Mencatat detail aktivitas komputasi ke file log lokal</string>
+    <string name="setting_allow_cpu">Izinkan Fallback CPU</string>
+    <string name="setting_allow_cpu_desc">Peringatan: Pemrosesan AI via CPU memerlukan waktu signifikan (default: Nonaktif)</string>
+
+    <!-- Hardware Info Screen -->
+    <string name="hardware_info_title">Informasi Hardware</string>
+    <string name="gpu_section_title">GPU &amp; Vulkan Compute</string>
+    <string name="gpu_name_label">Nama GPU:</string>
+    <string name="gpu_type_label">Tipe Perangkat:</string>
+    <string name="gpu_api_label">Versi Vulkan API:</string>
+    <string name="gpu_driver_label">Versi Driver:</string>
+    <string name="gpu_heap_label">Ukuran Heap Memori:</string>
+    <string name="gpu_fp16_storage_label">Dukungan FP16 Storage:</string>
+    <string name="gpu_fp16_arith_label">Dukungan FP16 Arithmetic:</string>
+    <string name="gpu_count_label">Jumlah GPU:</string>
+    <string name="gpu_supported">Didukung</string>
+    <string name="gpu_not_supported">Tidak Didukung</string>
+
+    <string name="codec_section_title">Hardware Codec (MediaCodec)</string>
+    <string name="codec_avc_dec">H.264 / AVC Decoder:</string>
+    <string name="codec_avc_enc">H.264 / AVC Encoder:</string>
+    <string name="codec_hevc_dec">H.265 / HEVC Decoder:</string>
+    <string name="codec_hevc_enc">H.265 / HEVC Encoder:</string>
+    <string name="codec_available">Tersedia (Akselerasi Hardware)</string>
+    <string name="codec_not_available">Tidak Tersedia</string>
+    <string name="btn_self_test">Uji Mandiri GPU (Self-Test)</string>
+    <string name="btn_export_diagnostics">Ekspor Laporan Diagnostik (ZIP)</string>
+    <string name="self_test_success">Uji mandiri berhasil: Pipeline Vulkan GPU beroperasi normal.</string>
+    <string name="self_test_failed">Uji mandiri gagal dengan kode %1$s.</string>
+
+    <!-- Log & Crash Report Screen -->
+    <string name="log_screen_title">Log &amp; Laporan Diagnostik</string>
+    <string name="filter_all">Semua</string>
+    <string name="filter_info">INFO</string>
+    <string name="filter_warn">WARN</string>
+    <string name="filter_error">ERROR</string>
+    <string name="filter_crashes">Kerusakan Saja</string>
+    <string name="action_copy">Salin</string>
+    <string name="action_share">Bagikan</string>
+    <string name="action_clear">Bersihkan</string>
+    <string name="action_refresh">Muat Ulang</string>
+    <string name="action_back">Kembali</string>
+    <string name="action_close">Tutup</string>
+    <string name="logs_empty">Tidak ada catatan log pada kategori ini.</string>
+    <string name="logs_cleared">Catatan log berhasil dibersihkan.</string>
+    <string name="logs_copied">Log berhasil disalin ke papan klip.</string>
+
+    <!-- Debug Crash Testing -->
+    <string name="debug_section_title">Pengujian Sistem (Khusus Debug)</string>
+    <string name="btn_test_kotlin_crash">Uji Error Kotlin</string>
+    <string name="btn_test_native_crash">Uji Error Native</string>
+
+    <!-- Crash Startup Dialog -->
+    <string name="crash_dialog_title">Aplikasi Berhenti Tak Terduga</string>
+    <string name="crash_dialog_msg">Pada sesi sebelumnya aplikasi terhenti karena: %1$s.\n\nLaporan telah dicatat untuk analisa diagnosa.</string>
+    <string name="crash_dialog_view">Lihat Laporan</string>
+    <string name="crash_dialog_share">Bagikan Diagnosa</string>
+    <string name="crash_dialog_dismiss">Tutup</string>
+
+    <!-- Recovery Dialog -->
+    <string name="recovery_dialog_title">Pulihkan Proses yang Terhenti</string>
+    <string name="recovery_dialog_msg">Ditemukan tugas pemrosesan yang belum selesai:\n\nTugas #%1$d (%2$s)\nProgres terakhir: %3$d%%\n\nApakah Anda ingin melanjutkan proses ini di latar belakang?</string>
+    <string name="btn_resume_job">Lanjutkan Proses</string>
+    <string name="btn_discard_job">Hapus Tugas</string>
+
+    <!-- Error Codes & Common Messages -->
+    <string name="placeholder_dash">-</string>
+    <string name="action_cancel">Batal</string>
+    <string name="action_delete">Hapus</string>
+    <string name="action_undo">Batal Perubahan</string>
+    <string name="action_redo">Ulangi Perubahan</string>
+    <string name="action_exit">Keluar</string>
+    <string name="dialog_clear_logs_message">Apakah Anda yakin ingin menghapus semua catatan log dan diagnosa?</string>
+    <string name="dialog_test_crash_title">Uji Diagnosa: %1$s</string>
+    <string name="dialog_test_crash_message">Tindakan ini memicu error terencana untuk memvalidasi sistem pemulihan aplikasi. Lanjutkan?</string>
+    <string name="btn_trigger_crash">Picu Error</string>
+
+    <string name="error_vulkan_init">HD-HW-101: Vulkan tidak tersedia pada perangkat ini.</string>
+    <string name="error_gpu_alloc">HD-HW-105: Alokasi memori GPU gagal.</string>
+    <string name="error_generic">Terjadi kesalahan</string>
+    <string name="export_success">Laporan berhasil diekspor ke %1$s</string>
+    <string name="export_failed">Gagal mengekspor laporan: %1$s</string>
+
+    <!-- Image Upscale Screen -->
+    <string name="image_screen_title">Upscale Gambar</string>
+    <string name="image_screen_subtitle">Tingkatkan resolusi foto dan ilustrasi hingga 4K</string>
+    <string name="btn_pick_image">Pilih Gambar</string>
+    <string name="pick_image_hint">Mendukung format JPG, PNG, WebP, dan HEIC/HEIF</string>
+    <string name="scale_selector_label">Skala Resolusi</string>
+    <string name="scale_2x">x2</string>
+    <string name="scale_3x">x3</string>
+    <string name="scale_4x">x4</string>
+    <string name="content_type_label">Tipe Konten &amp; Engine</string>
+    <string name="content_type_anime_cugan">Ilustrasi / 2D (Real-CUGAN Vulkan)</string>
+    <string name="model_variant_label">Varian Model Real-CUGAN</string>
+    <string name="model_se_label">Standar (se)</string>
+    <string name="model_pro_label">Kualitas Tinggi (pro)</string>
+    <string name="denoise_level_label">Pembersihan Derau (Denoise)</string>
+    <string name="denoise_conservative">Konservatif (-1)</string>
+    <string name="denoise_none">Tanpa Denoise (0)</string>
+    <string name="denoise_1x">Denoise 1x</string>
+    <string name="denoise_2x">Denoise 2x</string>
+    <string name="denoise_3x">Denoise 3x</string>
+    <string name="btn_preview_crop">Pratinjau Area</string>
+    <string name="btn_start_upscale">Mulai Upscale</string>
+    <string name="btn_cancel">Batal</string>
+
+    <!-- Result Screen -->
+    <string name="result_title">Hasil Pemrosesan</string>
+    <string name="result_slider_hint">Geser slider untuk membandingkan • Cubit atau ketuk dua kali untuk memperbesar</string>
+    <string name="result_details_header">Rincian Pemrosesan</string>
+    <string name="result_label_dimensions">Resolusi Output:</string>
+    <string name="result_label_duration">Waktu Pemrosesan:</string>
+    <string name="result_label_backend">Akselerasi Hardware:</string>
+    <string name="result_label_location">Lokasi Penyimpanan:</string>
+    <string name="btn_share">Bagikan</string>
+    <string name="btn_open_gallery">Buka di Galeri</string>
+    <string name="btn_done">Selesai</string>
+    <string name="dialog_crop_preview_title">Pratinjau Area (256x256)</string>
+    <string name="crop_preview_desc">Pratinjau cepat area tengah sebelum memproses seluruh gambar.</string>
+
+    <!-- Content Type & Presets -->
+    <string name="content_type_anime">Ilustrasi / 2D</string>
+    <string name="content_type_photo">Foto Nyata / Umum</string>
+    <string name="preset_label">Preset Performa</string>
+    <string name="preset_fast">Cepat</string>
+    <string name="preset_balanced">Seimbang</string>
+    <string name="preset_quality">Kualitas</string>
+    <string name="btn_advanced_settings">Pengaturan Lanjutan</string>
+
+    <!-- Custom Target Size -->
+    <string name="custom_size_switch">Target Resolusi Kustom</string>
+    <string name="custom_width_hint">Lebar (px)</string>
+    <string name="custom_height_hint">Tinggi (px)</string>
+    <string name="custom_size_warning">Target resolusi kustom akan disesuaikan dengan interpolasi presisi tinggi.</string>
+
+    <!-- Advanced Bottom Sheet -->
+    <string name="dialog_advanced_title">Pengaturan Lanjutan</string>
+    <string name="dialog_advanced_subtitle">Konfigurasi engine, pembagian tile, dan akselerasi komputasi</string>
+    <string name="engine_selector_label">Mesin Pemrosesan (Engine)</string>
+    <string name="engine_realcugan">Real-CUGAN (Ilustrasi)</string>
+    <string name="engine_realesrgan">Real-ESRGAN (Foto Nyata)</string>
+    <string name="model_selector_label">Pilih Model</string>
+    <string name="tile_size_slider_label">Ukuran Tile: %1$d px</string>
+    <string name="tile_size_auto">Otomatis (Sesuai Memori GPU)</string>
+    <string name="toggle_fp16">Presisi FP16 (Cepat)</string>
+    <string name="toggle_fp16_desc">Gunakan FP32 apabila GPU menghasilkan distorsi visual</string>
+    <string name="toggle_tta">Mode TTA (Test-Time Augmentation)</string>
+    <string name="toggle_tta_desc">Meningkatkan ketajaman melalui 8x inferensi rotasi (durasi lebih lama)</string>
+    <string name="btn_save_apply">Simpan &amp; Terapkan</string>
+
+    <!-- Batch Processing -->
+    <string name="batch_selected_count">%1$d gambar dipilih</string>
+    <string name="btn_start_batch_upscale">Mulai Antrian (%1$d Gambar)</string>
+    <string name="btn_pick_multi_image">Pilih Gambar (Tunggal / Sekaligus)</string>
+
+    <!-- Benchmark Screen -->
+    <string name="benchmark_title">Diagnostik Benchmark</string>
+    <string name="benchmark_desc">Uji performa inferensi GPU Vulkan pada tile standar 256×256 untuk model Real-CUGAN dan Real-ESRGAN.</string>
+    <string name="btn_run_benchmark">Jalankan Uji Performa</string>
+    <string name="benchmark_running">Menjalankan pengujian inferensi GPU...</string>
+    <string name="benchmark_ms_per_tile">%1$d ms / tile</string>
+    <string name="benchmark_est_1080p">Estimasi Foto 1080p: %1$.1f detik</string>
+    <string name="benchmark_est_video_720p">Estimasi Video 720p/30fps: %1$.1f detik / menit</string>
+    <string name="benchmark_vulkan_passed">Lolos pengujian komputasi Vulkan</string>
+    <string name="benchmark_vulkan_failed">Gagal: %1$s</string>
+    <string name="menu_benchmark">Uji Performa GPU</string>
+    <string name="menu_benchmark_desc">Evaluasi kecepatan waktu inferensi dan throughput hardware GPU</string>
+
+    <!-- Video Upscale -->
+    <string name="video_screen_title">Upscale Video</string>
+    <string name="video_screen_subtitle">Peningkatan resolusi video dan interpolasi 60 FPS</string>
+    <string name="btn_pick_video">Pilih Video</string>
+    <string name="pick_video_hint">Mendukung file video MP4, MOV, dan MKV (H.264 / HEVC)</string>
+    <string name="card_video_metadata_title">Informasi Video Sumber</string>
+    <string name="video_meta_resolution">Resolusi: %1$d × %2$d px</string>
+    <string name="video_meta_fps">Frame Rate: %1$.1f FPS</string>
+    <string name="video_meta_duration">Durasi: %1$s</string>
+    <string name="video_meta_codec">Codec: %1$s</string>
+    <string name="video_meta_bitrate">Bitrate: %1$s</string>
+    <string name="codec_selector_label">Encoder Video Output</string>
+    <string name="codec_hevc">HEVC (H.265)</string>
+    <string name="codec_h264">H.264 (AVC)</string>
+    <string name="quality_slider_label">Kualitas Bitrate: %1$d%%</string>
+    <string name="card_summary_title">Ringkasan Konfigurasi</string>
+    <string name="summary_output_res">Resolusi Output: %1$d × %2$d px</string>
+    <string name="summary_est_time">Estimasi Durasi: %1$s</string>
+    <string name="summary_est_size">Estimasi Ukuran: ~%1$s</string>
+    <string name="btn_preview_3s">Pratinjau 3 Detik</string>
+    <string name="btn_start_video_upscale">Mulai Upscale Video</string>
+    <string name="scale_1x">1x (Tanpa Upscale)</string>
+    <string name="fps_interpolation_toggle">Interpolasi Frame (RIFE)</string>
+    <string name="fps_interpolation_hint">Generasi frame AI untuk pemutaran video lebih halus</string>
+    <string name="interp_factor_label">Faktor Pengganda Frame Rate</string>
+    <string name="interp_factor_2x">2x FPS</string>
+    <string name="interp_factor_3x">3x FPS</string>
+    <string name="interp_factor_4x">4x FPS</string>
+    <string name="interp_target_fps">Target Frame Rate: %1$.1f FPS (Asli: %2$.1f FPS)</string>
+    <string name="interp_fps_warning">Target frame rate melebihi kapasitas encoder (%2$d FPS) atau batas 120 FPS. Nilai disesuaikan secara otomatis.</string>
+    <string name="interp_pipeline_order_desc">Tahapan: Interpolasi Frame disusul Peningkatan Resolusi</string>
+    <string name="interp_uhd_mode_title">Mode UHD (Resolusi &gt;= 2K)</string>
+    <string name="interp_uhd_mode_desc">Optimasi optical flow untuk resolusi tinggi</string>
+    <string name="interp_no_action_warning">Silakan tentukan minimal salah satu fitur: Skala Resolusi (&gt; 1x) atau Interpolasi Frame.</string>
+    <string name="summary_output_fps">Frame Rate Output: %1$.1f FPS</string>
+    <string name="encoder_unsupported_warning">Peringatan: Resolusi %1$d×%2$d melebihi batas hardware encoder (%3$d×%4$d). Silakan kurangi skala resolusi.</string>
+    <string name="btn_pause">Jeda</string>
+    <string name="btn_resume">Lanjutkan</string>
+    <string name="video_processing_progress">Memproses frame %1$d/%2$d (%3$d%%)</string>
+    <string name="storage_insufficient_error">Kapasitas penyimpanan tidak mencukupi untuk memproses video ini.</string>
+    <string name="btn_play">Putar</string>
+    <string name="share_video_title">Bagikan Video</string>
+    <string name="no_gallery_app">Tidak ada aplikasi pemutar video yang ditemukan</string>
+
+    <!-- Video Orientation & Save -->
+    <string name="video_orientation_title">Penyesuaian Orientasi</string>
+    <string name="video_orientation_subtitle">Atur rotasi atau cermin tampilan video</string>
+    <string name="btn_rotate_format">Rotasi (%1$d°)</string>
+    <string name="btn_mirror_format">Cermin: %1$s</string>
+    <string name="mirror_on">Aktif</string>
+    <string name="mirror_off">Nonaktif</string>
+    <string name="btn_reset">Atur Ulang</string>
+    <string name="btn_save_video">Simpan ke Galeri</string>
+    <string name="btn_saving_video">Menyimpan ke Galeri...</string>
+
+    <!-- Background Rendering Notifications -->
+    <string name="notif_channel_processing_name">Proses Latar Belakang HDify</string>
+    <string name="notif_channel_processing_desc">Menampilkan progres pemrosesan media di latar belakang</string>
+    <string name="notif_channel_completed_name">Hasil &amp; Notifikasi HDify</string>
+    <string name="notif_channel_completed_desc">Notifikasi penyelesaian atau kendala pemrosesan media</string>
+    <string name="notif_image_processing_title">Memproses Gambar (x%1$d)</string>
+    <string name="notif_video_processing_title">Memproses Video (x%1$d)</string>
+    <string name="notif_preparing">Mempersiapkan pemrosesan...</string>
+    <string name="notif_paused_title">Proses Dijeda</string>
+    <string name="notif_completed_title">Pemrosesan Selesai</string>
+    <string name="notif_completed_image_msg">Resolusi gambar berhasil ditingkatkan (%1$d × %2$d px).</string>
+    <string name="notif_completed_video_msg">Video berhasil diproses dan siap digunakan.</string>
+    <string name="notif_permission_rationale">Izin notifikasi diperlukan agar progres pemrosesan tetap dapat dipantau di latar belakang.</string>
+    <string name="notif_compress_title">Mengompres Video</string>
+    <string name="notif_compress_preparing">Mempersiapkan kompresi video...</string>
+    <string name="notif_compress_success_title">Kompresi Video Selesai</string>
+    <string name="notif_compress_success_msg">Ukuran berkurang %1$d%% (menjadi %2$s).</string>
+    <string name="notif_compress_failed_title">Kompresi Video Gagal</string>
+    <string name="notif_download_title">Mengunduh Media</string>
+    <string name="notif_download_starting">Menghubungkan ke server media...</string>
+    <string name="notif_download_success_title">Unduhan Selesai</string>
+    <string name="notif_download_success_msg">File disimpan: %1$s</string>
+    <string name="notif_download_failed_title">Unduhan Gagal</string>
+    <string name="notif_bg_removed_saved_title">Latar Belakang Gambar Dihapus</string>
+    <string name="notif_bg_removed_saved_msg">Gambar tanpa latar belakang berhasil disimpan ke Galeri.</string>
+    <string name="notif_bg_removed_failed_title">Gagal Menyimpan Gambar</string>
+    <string name="notif_queue_completed_title">Antrian HDify Selesai</string>
+    <string name="notif_queue_completed_msg">Semua antrian selesai diproses: %1$d berhasil, %2$d gagal.</string>
+    <string name="notif_job_failed_title">Tugas #%1$d Gagal</string>
+    <string name="notif_image_failed_title">Upscale Gambar Gagal</string>
+    <string name="notif_video_failed_title">Upscale Video Gagal</string>
+    <string name="notif_action_open_file">Buka File</string>
+
+    <!-- Media Downloader -->
+    <string name="card_downloader_title">Pengunduh Media</string>
+    <string name="card_downloader_desc">Unduh video, audio, dan foto dari berbagai platform media sosial tanpa watermark.</string>
+    <string name="downloader_title">Pengunduh Media</string>
+    <string name="downloader_subtitle">Unduh video dan foto tanpa watermark</string>
+    <string name="downloader_input_hint">Tempel tautan media di sini...</string>
+    <string name="downloader_btn_paste">Tempel</string>
+    <string name="downloader_btn_analyze">Analisis Tautan</string>
+    <string name="downloader_analyzing">Menganalisis tautan media...</string>
+    <string name="downloader_select_quality">Pilih Format &amp; Kualitas:</string>
+    <string name="downloader_btn_download">Unduh ke Galeri</string>
+    <string name="downloader_downloading_title">Mengunduh Media...</string>
+    <string name="downloader_success_title">Berhasil Diunduh</string>
+    <string name="downloader_success_desc">File berhasil disimpan ke galeri perangkat Anda.</string>
+    <string name="downloader_btn_open_video_upscaler">Buka di Video Upscaler</string>
+    <string name="downloader_btn_open_image_upscaler">Buka di Image Upscaler</string>
+    <string name="downloader_btn_download_again">Unduh Tautan Lain</string>
+    <string name="downloader_carousel_title">Pilihan Slide</string>
+    <string name="downloader_preview_title">Putar &amp; Pratinjau Media</string>
+    <string name="downloader_capabilities_title">Fitur Pengunduh Media</string>
+    <string name="downloader_capabilities_desc">• Instagram Carousel: Deteksi multi-slide video dan foto\n• SoundCloud HD: Audio berkualitas tinggi dengan sampul album\n• Pratinjau Terintegrasi: Pemutar media audio dan video sebelum mengunduh\n• Verifikasi Integritas: Pelacakan progres unduhan secara akurat\n• Integrasi AI: Lanjutkan langsung ke peningkatan resolusi atau 60 FPS</string>
+    <string name="downloader_clipboard_detected">Tautan terdeteksi di papan klip</string>
+    <string name="downloader_status_downloading">Mengunduh...</string>
+    <string name="downloader_hint_video_tap">Ketuk video untuk menjeda atau memutar kembali</string>
+    <string name="downloader_hint_audio_tap">Ketuk untuk menjeda atau memutar audio</string>
+    <string name="downloader_video_unsupported_preview">Format streaming tidak didukung untuk pratinjau. Anda tetap dapat mengunduh file ke galeri.</string>
+    <string name="downloader_audio_unsupported_preview">Aliran audio tidak dapat diputar langsung. Anda dapat mengunduh file ke galeri.</string>
+    <string name="downloader_audio_play_failed">Gagal memutar audio: %1$s</string>
+    <string name="downloader_option_audio_title">Audio / Musik</string>
+    <string name="downloader_option_audio_desc">Format MP3 berkualitas tinggi</string>
+    <string name="downloader_option_image_desc">Kualitas asli tanpa kompresi tambahan</string>
+    <string name="downloader_option_standard_desc">Kualitas standar</string>
+
+    <!-- Background Remover -->
+    <string name="card_bg_remover_title">Hapus Latar Belakang</string>
+    <string name="card_bg_remover_desc">Pisahkan objek foto secara otomatis dengan AI (PNG Transparan, Pas Foto, atau Warna Kustom).</string>
+    <string name="bg_remover_title">Hapus Latar Belakang</string>
+    <string name="bg_remover_subtitle">Segmentasi Objek AI On-Device</string>
+    <string name="bg_remover_pick_image">Pilih Foto dari Galeri</string>
+    <string name="bg_remover_change_image">Ganti Foto</string>
+    <string name="bg_remover_processing">Memisahkan latar belakang dengan AI...</string>
+    <string name="bg_remover_select_bg">Pilihan Warna Latar Belakang</string>
+    <string name="bg_option_transparent">Transparan</string>
+    <string name="bg_option_white">Putih</string>
+    <string name="bg_option_red">Merah</string>
+    <string name="bg_option_blue">Biru</string>
+    <string name="bg_option_black">Hitam</string>
+    <string name="bg_option_custom">Kustom...</string>
+    <string name="bg_btn_auto_remove_ai">Segmentasi Otomatis (AI)</string>
+    <string name="bg_btn_auto_remove_ai_running">Memisahkan Objek dengan AI...</string>
+    <string name="bg_tools_section_label">Alat Penyempurnaan Manual</string>
+    <string name="bg_tool_magic">Auto Color</string>
+    <string name="bg_tool_erase">Hapus</string>
+    <string name="bg_tool_restore">Pulihkan</string>
+    <string name="bg_tool_pan">Perbesar</string>
+    <string name="bg_tool_reset">Reset AI</string>
+    <string name="bg_tool_magic_tip">Sentuh warna latar belakang pada gambar untuk menghapusnya secara otomatis.</string>
+    <string name="bg_tool_pan_tip">Geser layar untuk navigasi, cubit (pinch) untuk zoom 1x – 6x.</string>
+    <string name="bg_tolerance_label">Toleransi Warna:</string>
+    <string name="bg_magic_contiguous">Hanya area terhubung</string>
+    <string name="bg_brush_size_label">Ukuran Kuas:</string>
+    <string name="bg_remover_save">Simpan ke Galeri</string>
+    <string name="bg_remover_open_upscaler">Lanjutkan ke AI Upscaler</string>
+    <string name="bg_remover_success">Foto berhasil disimpan ke galeri</string>
+    <string name="bg_remover_failed">Gagal memproses latar belakang foto</string>
+    <string name="bg_remover_pick_hint">Pilih foto untuk memisahkan latar belakang</string>
+    <string name="bg_remover_pick_subhint">Mendukung segmentasi otomatis AI dan penyempurnaan manual</string>
+    <string name="bg_remover_tools_hint">Kuas penghapus, pemulihan, atau deteksi warna otomatis</string>
+    <string name="bg_remover_bg_hint">Pilihan transparan atau warna formal pas foto</string>
+    <string name="bg_remover_upscale_hint">Tingkatkan resolusi objek hasil potongan hingga 4K</string>
+    <string name="bg_remover_toast_mask_reset">Mask dikembalikan ke hasil segmentasi AI</string>
+    <string name="bg_remover_toast_auto_success">Latar belakang berhasil dipisahkan</string>
+    <string name="bg_remover_toast_auto_failed">Gagal memproses segmentasi AI</string>
+    <string name="bg_remover_toast_save_failed">Gagal menyimpan foto ke galeri</string>
+    <string name="bg_remover_toast_prepare_failed">Gagal menyiapkan gambar</string>
+    <string name="bg_remover_saved_badge">Tersimpan di Galeri</string>
+
+    <!-- Custom Color Picker Dialog -->
+    <string name="color_picker_title">Pilih Warna Latar Belakang</string>
+    <string name="color_picker_subtitle">Atur warna menggunakan slider RGB atau masukkan kode HEX</string>
+    <string name="color_picker_popular">Warna Standar:</string>
+    <string name="color_picker_red">Merah (R)</string>
+    <string name="color_picker_green">Hijau (G)</string>
+    <string name="color_picker_blue">Biru (B)</string>
+    <string name="color_picker_hex_hint">Kode Warna HEX</string>
+    <string name="color_picker_btn_cancel">Batal</string>
+    <string name="color_picker_btn_apply">Terapkan Warna</string>
+    <string name="preview_hint_tap">Ketuk media untuk menjeda atau memutar kembali</string>
+
+    <!-- Zoom & Detail Badges -->
+    <string name="btn_zoom_fit">Layar</string>
+    <string name="btn_zoom_100">100% Detail</string>
+    <string name="scale_badge_2x">Skala 2x • 4x Kerapatan Piksel</string>
+    <string name="scale_badge_3x">Skala 3x • 9x Kerapatan Piksel</string>
+    <string name="scale_badge_4x">Skala 4x • 16x Kerapatan Piksel Ultra HD</string>
+
+    <!-- App Credits & Developer -->
+    <string name="home_hero_badge">Material You • Monochrome Edition</string>
+    <string name="home_dev_credit">Dikembangkan oleh Yuuka • Kunjungi TikTok</string>
+    <string name="settings_dev_desc">@yuukaonlyone_ • Ketuk untuk mengunjungi profil TikTok</string>
+    <string name="settings_dev_title">Dikembangkan oleh Yuuka</string>
+    <string name="section_developer">Pengembang &amp; Informasi</string>
+
+    <!-- Home Badges -->
+    <string name="home_badge_image">Real-CUGAN &amp; ESRGAN • Hingga 4x</string>
+    <string name="home_badge_bg">Segmentasi Otomatis AI • Presisi</string>
+    <string name="home_badge_video">RIFE v4.6 • 60 FPS • HEVC Hardware</string>
+    <string name="home_badge_downloader">Multiplatform • Kualitas Asli</string>
+
+    <!-- Video Compressor -->
+    <string name="card_compressor_title">Kompresi Video</string>
+    <string name="card_compressor_desc">Kompresi ukuran file video dengan efisiensi tinggi tanpa menurunkan kualitas visual.</string>
+    <string name="compressor_badge_text">Resolusi Asli • 60 FPS • Hardware VBR</string>
+    <string name="compressor_title">Kompresi Video</string>
+    <string name="compressor_subtitle">Optimasi ukuran file untuk pengunggahan media sosial</string>
+    <string name="compressor_btn_pick">Pilih Video dari Galeri</string>
+    <string name="compressor_pick_hint">Mendukung format MP4, MOV, dan MKV (H.264 / HEVC)</string>
+    <string name="compressor_btn_change_video">Ganti Video</string>
+    <string name="compressor_source_title">Informasi Video Sumber</string>
+    <string name="compressor_label_size">Ukuran File:</string>
+    <string name="compressor_presets_title">Pilih Mode Kompresi</string>
+    <string name="compressor_presets_subtitle">Resolusi dan frame rate dipertahankan sesuai file asli</string>
+    <string name="compressor_preset_original_high">Kualitas Maksimal (~30%% kompresi)\nResolusi &amp; FPS asli • Kualitas visual optimal</string>
+    <string name="compressor_preset_original_balanced">Seimbang (~50%% kompresi)\nResolusi &amp; FPS asli • Pengurangan ukuran optimal</string>
+    <string name="compressor_preset_original_saver">Hemat Penyimpanan (~70%% kompresi)\nResolusi &amp; FPS asli • Ukuran file minimal</string>
+    <string name="compressor_preset_custom">Kustom\nKonfigurasi manual bitrate, resolusi, dan codec</string>
+    <string name="compressor_custom_bitrate_label">Target Bitrate: %1$.1f Mbps</string>
+    <string name="compressor_custom_res_label">Batas Resolusi Target</string>
+    <string name="compressor_custom_codec_label">Codec Target</string>
+    <string name="compressor_keep_fps_label">Pertahankan Frame Rate Asli</string>
+    <string name="compressor_force_hdr_label">Efek Visual HDR Dinamis</string>
+    <string name="compressor_force_hdr_desc">Meningkatkan rentang kontras dinamis dan ketajaman detail bayangan tanpa distorsi warna.</string>
+    <string name="compressor_estimation_title">Estimasi Hasil Kompresi</string>
+    <string name="compressor_btn_start">Mulai Kompresi Video</string>
+    <string name="compressor_processing_title">Mengompresi Video dengan GPU...</string>
+    <string name="compressor_progress_format">Frame %1$d/%2$d • %3$.1f FPS • ETA ~%4$ds</string>
+    <string name="compressor_success_title">Kompresi Selesai</string>
+    <string name="compressor_success_desc">Video berhasil dioptimalkan dan siap digunakan.</string>
+    <string name="compressor_stat_orig_size">Ukuran Awal:</string>
+    <string name="compressor_stat_new_size">Ukuran Baru:</string>
+    <string name="compressor_stat_savings">Penghematan:</string>
+    <string name="compressor_btn_play">Putar Video</string>
+    <string name="compressor_btn_share">Bagikan Video</string>
+    <string name="compressor_btn_again">Kompresi Video Lain</string>
+    <string name="compressor_pick_title">Pilih Video untuk Dikompresi</string>
+    <string name="compressor_res_original">Asli</string>
+    <string name="compressor_res_1080p">1080p</string>
+    <string name="compressor_res_720p">720p</string>
+    <string name="compressor_codec_h264">H.264 (AVC)</string>
+    <string name="compressor_codec_hevc">HEVC (H.265)</string>
+    <string name="compressor_tip_desc">Video dioptimalkan dengan bitrate standar agar tidak mengalami kompresi ulang berlebih pada platform media sosial.</string>
+    <string name="compressor_source_size_format">Ukuran: %1$s</string>
+    <string name="compressor_tag_original">(Asli)</string>
+    <string name="compressor_badge_savings_format">Hemat ~%1$d%% • Resolusi %2$s • %3$s%4$s</string>
+    <string name="compressor_badge_normal_format">Resolusi %1$s • %2$s • %3$s%4$s</string>
+    <string name="compressor_badge_hdr_tag"> • Efek HDR</string>
+    <string name="compressor_stat_savings_format">%1$d%% Lebih Ringan</string>
+    <string name="compressor_share_failed">Gagal membagikan video: %1$s</string>
+
+    <!-- AI Models Catalog & Explanation -->
+    <string name="menu_ai_models_title">Katalog Model &amp; Engine AI</string>
+    <string name="menu_ai_models_desc">Daftar 24+ model neural network lokal dan pustaka komputasi NCNN Vulkan</string>
+    <string name="dialog_ai_models_title">Katalog Model &amp; Engine AI</string>
+    <string name="dialog_ai_models_subtitle">Pemrosesan Lokal • Privasi Terjamin • Tanpa Server Cloud</string>
+    <string name="dialog_ai_models_faq_title">Informasi Ukuran Aplikasi</string>
+    <string name="dialog_ai_models_faq_desc">HDify memuat seluruh model deep learning dan engine akselerasi Vulkan secara mandiri di dalam aplikasi. Semua pemrosesan berlangsung sepenuhnya di perangkat tanpa koneksi internet dan tanpa pengiriman data ke server eksternal.</string>
+    <string name="dialog_ai_models_cugan_title">Real-CUGAN SE &amp; Pro</string>
+    <string name="dialog_ai_models_cugan_badge">18 Model • ~40.5 MB</string>
+    <string name="dialog_ai_models_cugan_desc">Model super-resolusi untuk ilustrasi dan konten 2D dengan rekonstruksi garis presisi tinggi.</string>
+    <string name="dialog_ai_models_cugan_details">• Model SE: Dioptimalkan untuk efisiensi perangkat mobile (x2, x3, x4)\n• Model Pro: Rekonstruksi detail maksimal (x2, x3)</string>
+    <string name="dialog_ai_models_esrgan_title">Real-ESRGAN</string>
+    <string name="dialog_ai_models_esrgan_badge">5 Model • ~46.0 MB</string>
+    <string name="dialog_ai_models_esrgan_desc">Model super-resolusi umum untuk restorasi foto nyata, lanskap, dan tekstur alami.</string>
+    <string name="dialog_ai_models_esrgan_details">• realesrgan-x4plus: Model komprehensif untuk foto realistis\n• realesrgan-x4plus-anime: Dioptimalkan untuk ilustrasi kompleks\n• realesr-animevideov3: Model inferensi cepat untuk frame video</string>
+    <string name="dialog_ai_models_rife_title">RIFE v4.6 FlowNet</string>
+    <string name="dialog_ai_models_rife_badge">10.6 MB • 60/120 FPS</string>
+    <string name="dialog_ai_models_rife_desc">Model interpolasi frame berbasis optical flow untuk meningkatkan kelancaran video hingga 60 atau 120 FPS.</string>
+    <string name="dialog_ai_models_rife_details">• rife-v4.6/flownet: Estimasi gerakan antar frame secara real-time on-device</string>
+    <string name="dialog_ai_models_vulkan_title">Pustaka Komputasi Vulkan (Universal ABI)</string>
+    <string name="dialog_ai_models_vulkan_badge">Universal • ~120+ MB</string>
+    <string name="dialog_ai_models_vulkan_desc">Mencakup pustaka native C++ 64-bit dan 32-bit untuk kompatibilitas penuh di berbagai arsitektur prosesor:</string>
+    <string name="dialog_ai_models_vulkan_details">• arm64-v8a: Perangkat Android modern\n• armeabi-v7a: Perangkat Android 32-bit\n• x86_64: Emulator Android dan perangkat PC\n• x86: Emulator 32-bit</string>
+    <string name="dialog_ai_models_summary_title">Ringkasan Sistem &amp; Privasi</string>
+    <string name="dialog_ai_models_summary_desc">• Total Model: 24+ model neural network lokal\n• Privasi: Pemrosesan 100% di perangkat tanpa koneksi cloud\n• Efisiensi: Bebas kuota internet untuk seluruh proses rendering\n• Akselerasi: Komputasi GPU Vulkan untuk performa optimal</string>
+    <string name="dialog_ai_models_btn_close">Tutup</string>
+
+    <!-- Dynamic Status & Processing Strings -->
+    <string name="status_cancelling">Membatalkan proses...</string>
+    <string name="warning_large_resolution">Peringatan: Resolusi output (%1$d×%2$d, %3$d MP) sangat tinggi. Pemrosesan memerlukan waktu lebih lama.</string>
+    <string name="status_processing_tile">Memproses tile %1$d/%2$d (%3$d%%)</string>
+    <string name="status_processing_frame">Memproses frame %1$d/%2$d (%3$d%%)%4$s</string>
+    <string name="status_preparing_engine">Mempersiapkan engine AI...</string>
+    <string name="status_preparing_pipeline">Mempersiapkan pipeline video...</string>
+    <string name="dialog_upscale_failed_title">Upscale Gagal</string>
+    <string name="dialog_video_upscale_failed_title">Upscale Video Gagal</string>
+    <string name="dialog_notice_title">Pemberitahuan</string>
+    <string name="dialog_unsaved_video_title">Video Belum Disimpan</string>
+    <string name="dialog_unsaved_video_desc">Video hasil pemrosesan belum disimpan ke galeri. Keluar sekarang akan menghapus file sementara.</string>
+    <string name="action_share_image">Bagikan Gambar</string>
+    <string name="result_duration_format">%.2f detik</string>
+    <string name="result_unsaved_draft">Belum disimpan (Draf)</string>
+    <string name="toast_save_first">Simpan video ke galeri terlebih dahulu</string>
+    <string name="toast_no_gallery">Aplikasi galeri tidak ditemukan</string>
+    <string name="toast_draft_not_found">File draf tidak ditemukan</string>
+    <string name="toast_video_cache_not_found">File video di cache tidak ditemukan</string>
+    <string name="toast_video_save_success">Video berhasil disimpan ke galeri</string>
+    <string name="toast_video_save_failed">Gagal menyimpan video: %1$s</string>
+    <string name="toast_tiktok_open_failed">Gagal membuka tautan TikTok</string>
+    <string name="media_image">Gambar</string>
+    <string name="media_video">Video</string>
+    <string name="job_title_format">Tugas #%1$d (%2$s)</string>
+    <string name="job_scale_format">Skala x%1$d</string>
+    <string name="status_processing">Memproses</string>
+    <string name="status_waiting">Menunggu</string>
+    <string name="status_completed">Selesai</string>
+    <string name="status_failed">Gagal</string>
+    <string name="status_cancelled">Dibatalkan</string>
+    <string name="status_queued">Dalam antrian</string>
+    <string name="status_progress_percent">%1$d%% selesai</string>
+    <string name="scale_short_format">x%1$d</string>
+    <string name="scale_short_1x">x1</string>
+    <string name="label_preview">Pratinjau</string>
+</resources>

@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDify • Ultra HD Engine (Desktop)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- 1. Custom Titlebar -->
+    <header class="titlebar">
+        <div class="titlebar-brand">
+            <svg class="titlebar-logo" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span id="titlebar-text">HDify • Ultra HD Engine (Desktop)</span>
+            <span class="titlebar-version">v2.2.8</span>
+        </div>
+        <div class="titlebar-controls">
+            <button class="control-btn" id="btn-win-min" title="Minimize" data-i18n-title="title_minimize">
+                <svg width="10" height="10" viewBox="0 0 10 1"><rect width="10" height="1" fill="currentColor"/></svg>
+            </button>
+            <button class="control-btn" id="btn-win-max" title="Maximize" data-i18n-title="title_maximize">
+                <svg width="10" height="10" viewBox="0 0 10 10"><rect width="10" height="10" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+            </button>
+            <button class="control-btn close" id="btn-win-close" title="Close" data-i18n-title="title_close">
+                <svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 0L10 10M10 0L0 10" stroke="currentColor" stroke-width="1.2"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. Main App Container -->
+    <div class="app-container">
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="nav-header">
+                <div class="nav-brand-row">
+                    <svg class="nav-brand-logo" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span class="nav-brand-title">HDify</span>
+                </div>
+                <div class="nav-brand-sub" data-i18n="app_subtitle">Monochrome • Material You</div>
+            </div>
+
+            <nav class="nav-list">
+                <button class="nav-item active" data-view="view-home">
+                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <span data-i18n="nav_home">Beranda</span>
+                </button>
+                <button class="nav-item" data-view="view-image">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span data-i18n="nav_image">AI Image Upscaler</span>
+                </button>
+                <button class="nav-item" data-view="view-video">
+                    <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+                    <span data-i18n="nav_video">AI Video Upscaler</span>
+                </button>
+                <button class="nav-item" data-view="view-bgremover">
+                    <svg viewBox="0 0 24 24"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3h-3z"/></svg>
+                    <span data-i18n="nav_bgremover">Hapus Background</span>
+                </button>
+                <button class="nav-item" data-view="view-compressor">
+                    <svg viewBox="0 0 24 24"><path d="M4 9h16v2H4zm0 4h16v2H4zm4 4h8v2H8zM8 5h8v2H8z"/></svg>
+                    <span data-i18n="nav_compressor">Kompres Video</span>
+                </button>
+                <button class="nav-item" data-view="view-downloader">
+                    <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                    <span data-i18n="nav_downloader">Downloader Media</span>
+                </button>
+                <button class="nav-item" data-view="view-hardware">
+                    <svg viewBox="0 0 24 24"><path d="M22 9V7h-2V5c0-1.1-.9-2-2-2h-2V1h-2v2h-4V1H8v2H6c-1.1 0-2 .9-2 2v2H2v2h2v4H2v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h4v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2V9h2zm-4 10H6V5h12v14zm-9-9h6v6H9z"/></svg>
+                    <span data-i18n="nav_hardware">Hardware & Benchmark</span>
+                </button>
+                <button class="nav-item" data-view="view-queue">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    <span data-i18n="nav_queue">Antrian Tugas</span>
+                </button>
+                <button class="nav-item" data-view="view-settings">
+                    <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                    <span data-i18n="nav_settings">Pengaturan</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="lang-switch">
+                    <button class="lang-btn active" id="btn-lang-id">ID</button>
+                    <button class="lang-btn" id="btn-lang-en">EN</button>
+                </div>
+                <div style="font-size: 11px; color: var(--text-tertiary);">HDify v2.2.8</div>
+            </div>
+        </aside>
+
+        <!-- Main Dynamic Content -->
+        <main class="content-area">
+
+            <!-- VIEW 1: HOME -->
+            <section id="view-home" class="view-section active">
+                <div class="hero-badge" data-i18n="home_hero_badge">◆ Material You • Desktop Edition</div>
+                <h1 class="page-title" data-i18n="home_title">Pusat Peningkatan Media</h1>
+                <p class="page-desc" data-i18n="home_desc">Solusi pemrosesan AI lokal berkecepatan tinggi dengan akselerasi GPU Vulkan untuk foto, video, penghapusan latar belakang, dan pengunduh media.</p>
+
+                <div class="features-grid">
+                    <div class="feature-card" data-target="view-image">
+                        <div class="feature-icon-box"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
+                        <h3 class="feature-title" data-i18n="home_card_image_title">AI Image Upscaler</h3>
+                        <p class="feature-desc" data-i18n="home_card_image_desc">Tingkatkan resolusi foto dan anime hingga 4x Ultra HD tanpa pecah menggunakan model Real-CUGAN dan Real-ESRGAN.</p>
+                        <div class="feature-badge" data-i18n="home_badge_image">Real-CUGAN &amp; ESRGAN • Hingga 4x</div>
+                    </div>
+
+                    <div class="feature-card" data-target="view-video">
+                        <div class="feature-icon-box"><svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>
+                        <h3 class="feature-title" data-i18n="home_card_video_title">AI Video Upscaler</h3>
+                        <p class="feature-desc" data-i18n="home_card_video_desc">Interpolasi frame video menjadi 60/120 FPS super mulus dengan encoder hardware FFmpeg dan GPU Vulkan.</p>
+                        <div class="feature-badge" data-i18n="home_badge_video">60 / 120 FPS • HEVC Hardware</div>
+                    </div>
+
+                    <div class="feature-card" data-target="view-bgremover">
+                        <div class="feature-icon-box"><svg viewBox="0 0 24 24"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64z"/></svg></div>
+                        <h3 class="feature-title" data-i18n="home_card_bg_title">Penghapus Background</h3>
+                        <p class="feature-desc" data-i18n="home_card_bg_desc">Potong latar belakang otomatis dengan kuas presisi, auto-color, dan ganti latar belakang formal atau transparan.</p>
+                        <div class="feature-badge" data-i18n="home_badge_bg">Segmentasi Otomatis AI • Presisi</div>
+                    </div>
+
+                    <div class="feature-card" data-target="view-compressor">
+                        <div class="feature-icon-box"><svg viewBox="0 0 24 24"><path d="M4 9h16v2H4zm0 4h16v2H4zm4 4h8v2H8zM8 5h8v2H8z"/></svg></div>
+                        <h3 class="feature-title" data-i18n="home_card_compress_title">Kompresi Video</h3>
+                        <p class="feature-desc" data-i18n="home_card_compress_desc">Kecilkan ukuran file video secara drastis tanpa menurunkan resolusi asli dan frame rate untuk upload lancar di media sosial.</p>
+                        <div class="feature-badge" data-i18n="home_badge_compress">Smart Bitrate • Resolusi Asli</div>
+                    </div>
+
+                    <div class="feature-card" data-target="view-downloader">
+                        <div class="feature-icon-box"><svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+                        <h3 class="feature-title" data-i18n="home_card_downloader_title">Pengunduh Media</h3>
+                        <p class="feature-desc" data-i18n="home_card_downloader_desc">Unduh video dan audio tanpa watermark dari TikTok, YouTube, SoundCloud, Instagram, X (Twitter), dan Douyin.</p>
+                        <div class="feature-badge" data-i18n="home_badge_downloader">Multiplatform • Kualitas Asli</div>
+                    </div>
+                </div>
+
+                <!-- Developer Credit Card -->
+                <div class="dev-card" id="btn-open-dev-tiktok">
+                    <div class="dev-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.99v9.11c-.01 2.1-.8 4.2-2.34 5.69-1.74 1.7-4.22 2.5-6.66 2.18-2.6-.32-4.97-2.02-6.04-4.42-1.07-2.39-.77-5.26.79-7.39 1.55-2.12 4.15-3.32 6.77-3.07.01 1.48-.01 2.96 0 4.44-1.22-.16-2.49.2-3.33 1.07-.84.86-1.15 2.14-.81 3.28.34 1.14 1.42 1.99 2.61 2.08 1.18.1 2.37-.53 2.87-1.61.32-.69.41-1.47.4-2.23V.02z"/></svg>
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 15px;" data-i18n="settings_dev_title">Dikembangkan oleh Yuuka</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;" data-i18n="settings_dev_desc">@yuukaonlyone_ • Klik untuk mengunjungi profil TikTok</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 2: IMAGE UPSCALE -->
+            <section id="view-image" class="view-section">
+                <h1 class="page-title" data-i18n="nav_image">AI Image Upscaler</h1>
+                <p class="page-desc" data-i18n="image_page_desc">Tingkatkan resolusi gambar hingga 4x Ultra HD menggunakan neural network lokal Vulkan NCNN.</p>
+
+                <!-- Dropzone -->
+                <div class="dropzone" id="image-dropzone">
+                    <svg class="dropzone-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                    <div class="dropzone-title" data-i18n="image_dropzone_title">Pilih atau Tarik Foto ke Sini</div>
+                    <div class="dropzone-hint" data-i18n="image_dropzone_hint">Mendukung file JPG, PNG, WEBP, dan BMP</div>
+                    <input type="file" id="image-file-input" accept="image/*" style="display: none;">
+                </div>
+
+                <!-- Source Photo Information Card (Shown immediately upon image selection) -->
+                <div class="card" id="image-source-card" style="display: none; margin-bottom: 20px;">
+                    <div class="source-info-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                            <span class="card-title" style="margin-bottom: 0;" data-i18n="image_source_title">Foto Sumber</span>
+                        </div>
+                        <button class="btn btn-secondary" id="btn-change-image-photo" style="padding: 6px 14px; font-size: 12px;" data-i18n="btn_change_photo">Ganti Foto</button>
+                    </div>
+                    <div class="source-thumb-container">
+                        <img id="img-source-thumb" class="source-thumb-img" alt="Source Thumbnail">
+                    </div>
+                    <div id="image-source-meta" class="meta-tags-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;"></div>
+                </div>
+
+                <!-- Result Comparison Card (Shown ONLY after upscale completes or Crop Preview) -->
+                <div class="card" id="image-result-card" style="display: none; margin-bottom: 20px; padding: 18px;">
+                    <div class="source-info-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></svg>
+                            <span class="card-title" style="margin-bottom: 0;" data-i18n="compare_title">Hasil Peningkatan AI</span>
+                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <button class="btn btn-secondary" id="btn-change-image-result" style="padding: 6px 12px; font-size: 12px;" data-i18n="btn_change_photo">Ganti Foto</button>
+                            <button class="btn btn-secondary" id="btn-open-upscaled-image" style="padding: 6px 12px; font-size: 12px;" data-i18n="btn_open_file">Buka File</button>
+                            <button class="btn btn-secondary" id="btn-show-folder-image" style="padding: 6px 12px; font-size: 12px;" data-i18n="btn_open_folder">Buka Folder</button>
+                        </div>
+                    </div>
+
+                    <div class="compare-container" id="compare-box" style="--slider-pos: 50%;">
+                        <!-- Floating Zoom Controls in Top Right -->
+                        <div class="compare-zoom-controls" id="compare-zoom-controls">
+                            <button class="compare-zoom-btn" id="btn-compare-zoom-out" title="Perkecil">−</button>
+                            <button class="compare-zoom-pill" id="btn-compare-zoom-reset" title="Reset Zoom">1.0x</button>
+                            <button class="compare-zoom-btn" id="btn-compare-zoom-in" title="Perbesar">+</button>
+                            <button class="compare-zoom-btn" id="btn-compare-zoom-toggle" title="100% Detail">100%</button>
+                        </div>
+
+                        <!-- Base Image Stage (After AI Upscale) -->
+                        <div class="compare-stage" id="compare-stage">
+                            <img id="img-result" class="compare-img" alt="Result">
+                        </div>
+
+                        <!-- Overlay Stage (Original Before, clipped by viewport slider) -->
+                        <div class="compare-clip-wrapper" id="compare-clip-wrapper">
+                            <div class="compare-stage" id="compare-stage-before">
+                                <img id="img-original" class="compare-img" alt="Original">
+                            </div>
+                        </div>
+
+                        <!-- Divider Line (Fixed on container, does NOT scale or pan) -->
+                        <div class="compare-divider" id="compare-divider"></div>
+                        
+                        <!-- Drag Handle (Fixed on container, does NOT scale or pan) -->
+                        <div class="compare-handle" id="compare-handle">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#000000"><path d="M8 7l-5 5 5 5V7zm8 0v10l5-5-5-5z"/></svg>
+                        </div>
+
+                        <!-- Fixed Badges (pinned to container corners, unaffected by pan/zoom) -->
+                        <div class="compare-badge badge-before" data-i18n="compare_before">Sebelum</div>
+                        <div class="compare-badge badge-after" data-i18n="compare_after">Sesudah (AI)</div>
+                    </div>
+
+                    <!-- Helpful hint & zoom indicator under slider -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 11px; color: var(--text-tertiary); padding: 0 4px;">
+                        <span data-i18n="compare_hint">Geser slider untuk membandingkan • Gulir mouse atau klik 2x untuk perbesar &amp; geser detail</span>
+                        <span id="compare-zoom-indicator" style="font-weight: 600; color: #38bdf8;">1.0x (Layar)</span>
+                    </div>
+
+                    <div id="image-result-meta" class="meta-tags-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;"></div>
+                </div>
+
+                <!-- Settings Card -->
+                <div class="card">
+                    <div class="card-title" data-i18n="options_title">Konfigurasi Model &amp; Peningkatan</div>
+                    <div class="card-subtitle" data-i18n="options_desc">Pilih engine yang sesuai dengan tipe konten gambar Anda.</div>
+
+                    <!-- Resolution Scale -->
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="opt_scale_label">Faktor Perbesaran</label>
+                        <div class="btn-group" id="btn-group-scale">
+                            <button class="btn-group-item active" data-scale="2">x2</button>
+                            <button class="btn-group-item" data-scale="3">x3</button>
+                            <button class="btn-group-item" data-scale="4">x4</button>
+                        </div>
+                    </div>
+
+                    <!-- Custom Target Resolution Toggle -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding: 10px 14px; background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border: 1px solid var(--bg-glass-stroke);">
+                        <div>
+                            <div style="font-weight: 600; font-size: 13px;" data-i18n="opt_custom_res_title">Kustom Resolusi Target</div>
+                            <div style="font-size: 11px; color: var(--text-secondary);" data-i18n="opt_custom_res_desc">Tentukan resolusi lebar x tinggi secara manual.</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="switch-custom-res">
+                            <span class="slider-switch"></span>
+                        </label>
+                    </div>
+
+                    <!-- Custom Resolution Inputs (hidden by default) -->
+                    <div id="box-custom-res" style="display: none; margin-top: 12px;">
+                        <div class="custom-res-grid">
+                            <div>
+                                <label class="form-label" style="font-size: 12px;" data-i18n="custom_width_label">Lebar (px)</label>
+                                <input type="number" class="input-text" id="input-custom-width" placeholder="1920">
+                            </div>
+                            <div>
+                                <label class="form-label" style="font-size: 12px;" data-i18n="custom_height_label">Tinggi (px)</label>
+                                <input type="number" class="input-text" id="input-custom-height" placeholder="1080">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Type & Engine -->
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label class="form-label" data-i18n="opt_content_type_label">Tipe Konten &amp; Engine</label>
+                        <div class="btn-group" id="btn-group-content-type">
+                            <button class="btn-group-item active" data-type="cugan" data-i18n="type_illustration">Ilustrasi / 2D (Real-CUGAN)</button>
+                            <button class="btn-group-item" data-type="esrgan" data-i18n="type_photo">Foto Nyata / Umum (Real-ESRGAN)</button>
+                        </div>
+                    </div>
+
+                    <!-- Performance Preset -->
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="opt_preset_label">Preset Performa</label>
+                        <div class="btn-group" id="btn-group-perf-preset">
+                            <button class="btn-group-item" data-preset="fast" data-i18n="perf_fast">Cepat</button>
+                            <button class="btn-group-item active" data-preset="balanced" data-i18n="perf_balanced">Seimbang</button>
+                            <button class="btn-group-item" data-preset="quality" data-i18n="perf_quality">Kualitas</button>
+                        </div>
+                    </div>
+
+                    <!-- Real-CUGAN Model Variant -->
+                    <div class="form-group" id="group-cugan-variant">
+                        <label class="form-label" data-i18n="opt_variant_label">Varian Model Real-CUGAN</label>
+                        <div class="btn-group" id="btn-group-cugan-variant">
+                            <button class="btn-group-item active" data-variant="se" data-i18n="variant_se">Standar (se)</button>
+                            <button class="btn-group-item" data-variant="pro" data-i18n="variant_pro">Kualitas Tinggi (pro)</button>
+                        </div>
+                    </div>
+
+                    <!-- Real-ESRGAN Model Selection -->
+                    <div class="form-group" id="group-esrgan-model" style="display: none;">
+                        <label class="form-label" data-i18n="opt_esrgan_model_label">Pilihan Model Real-ESRGAN</label>
+                        <div class="btn-group" id="btn-group-esrgan-model">
+                            <button class="btn-group-item active" data-model="realesrgan-x4plus" data-i18n="esrgan_x4plus">x4plus (Foto Kualitas Tinggi)</button>
+                            <button class="btn-group-item" data-model="realesrgan-x4plus-anime" data-i18n="esrgan_x4plus_anime">x4plus-anime (Anime HD)</button>
+                            <button class="btn-group-item" data-model="realesr-animevideov3" data-i18n="esrgan_animevideov3">animevideov3 (Video / Ringan)</button>
+                        </div>
+                    </div>
+
+                    <!-- Noise Reduction (Denoise) -->
+                    <div class="form-group" id="group-denoise">
+                        <label class="form-label" data-i18n="opt_denoise_label">Pereduksi Noise (Denoise)</label>
+                        <div class="btn-group" id="btn-group-denoise">
+                            <button class="btn-group-item active" data-denoise="-1" data-i18n="denoise_default">Konservatif (-1)</button>
+                            <button class="btn-group-item" data-denoise="0" data-i18n="denoise_none">Tanpa Denoise (0)</button>
+                            <button class="btn-group-item" data-denoise="1">Denoise 1x</button>
+                            <button class="btn-group-item" data-denoise="2">Denoise 2x</button>
+                            <button class="btn-group-item" data-denoise="3">Denoise 3x</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Progress Section -->
+                <div class="progress-card" id="image-progress-box" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 600;" id="image-progress-status" data-i18n="status_processing">Memproses...</span>
+                        <span style="font-weight: 700;" id="image-progress-pct">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="image-progress-bar"></div>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+                        <button class="btn btn-secondary" id="btn-cancel-image-upscale" data-i18n="btn_cancel">Batalkan</button>
+                    </div>
+                </div>
+
+                <!-- Dual Action Bottom Bar -->
+                <div class="action-bar-dual">
+                    <button class="btn btn-secondary btn-preview" id="btn-preview-crop" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 15h2V7c0-1.1-.9-2-2-2H9v2h8v8zM7 17V1H5v4H1v2h4v10c0 1.1.9 2 2 2h10v4h2v-4h4v-2H7z"/></svg>
+                        <span data-i18n="btn_preview_crop">Pratinjau Crop</span>
+                    </button>
+                    <button class="btn btn-primary btn-main" id="btn-start-image-upscale" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        <span data-i18n="btn_start_upscale">Mulai Upscale</span>
+                    </button>
+                </div>
+                <div style="margin-top: 10px;">
+                    <button class="btn btn-tonal" id="btn-open-image-folder" style="display: none; width: 100%;" data-i18n="btn_open_folder">Buka Folder Hasil</button>
+                </div>
+            </section>
+
+            <!-- VIEW 3: VIDEO UPSCALE -->
+            <section id="view-video" class="view-section">
+                <h1 class="page-title" data-i18n="nav_video">AI Video Upscaler</h1>
+                <p class="page-desc" data-i18n="video_page_desc">Interpolasi frame video super mulus dan peningkatan resolusi dengan encoder hardware FFmpeg &amp; Vulkan.</p>
+
+                <div class="dropzone" id="video-dropzone">
+                    <svg class="dropzone-icon" viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+                    <div class="dropzone-title" data-i18n="video_dropzone_title">Pilih atau Tarik Video ke Sini</div>
+                    <div class="dropzone-hint" data-i18n="video_dropzone_hint">Mendukung MP4, MKV, MOV, dan WEBM</div>
+                    <input type="file" id="video-file-input" accept="video/*" style="display: none;">
+                </div>
+
+                <div class="card" id="video-info-box" style="display: none;">
+                    <div class="source-info-header">
+                        <div class="card-title" style="margin-bottom: 0;" data-i18n="video_info_title">Informasi Video Sumber</div>
+                        <button class="btn btn-secondary" id="btn-change-video-upscale" style="padding: 6px 14px; font-size: 12px;" data-i18n="btn_change_video">Ganti Video</button>
+                    </div>
+                    <div id="video-meta-tags" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;"></div>
+                </div>
+
+                <div class="card">
+                    <!-- Resolution Scale (x1, x2, x3, x4) -->
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="video_scale_label">Skala Resolusi</label>
+                        <div class="btn-group" id="btn-group-video-scale">
+                            <button class="btn-group-item active" data-scale="1">x1</button>
+                            <button class="btn-group-item" data-scale="2">x2</button>
+                            <button class="btn-group-item" data-scale="3">x3</button>
+                            <button class="btn-group-item" data-scale="4">x4</button>
+                    </div>
+
+                    <!-- Video Super-Resolution Model (Active when Scale > 1) -->
+                    <div class="form-group" id="group-video-model" style="display: none;">
+                        <label class="form-label" data-i18n="video_model_label">Model AI Video Super-Resolution</label>
+                        <div class="btn-group" id="btn-group-video-model">
+                            <button class="btn-group-item active" data-model="realesr-animevideov3" data-i18n="video_model_animev3">animevideov3 (Video Cepat / Rekomendasi)</button>
+                            <button class="btn-group-item" data-model="realesrgan-x4plus" data-i18n="video_model_x4plus">x4plus (Foto &amp; Video Realistik)</button>
+                            <button class="btn-group-item" data-model="realesrgan-x4plus-anime" data-i18n="video_model_x4plus_anime">x4plus-anime (Anime HD)</button>
+                        </div>
+                    </div>
+
+                    <!-- Target Video Encoder -->
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="video_codec_label">Target Video Encoder</label>
+                        <div class="btn-group" id="btn-group-video-codec">
+                            <button class="btn-group-item active" data-codec="hevc">HEVC (H.265)</button>
+                            <button class="btn-group-item" data-codec="h264">H.264 (AVC)</button>
+                        </div>
+                    </div>
+
+                    <!-- Bitrate Quality Slider -->
+                    <div class="form-group" style="margin-bottom: 14px;">
+                        <div class="form-label">
+                            <span data-i18n="video_bitrate_quality_label">Kualitas Bitrate</span>
+                            <span class="value" id="val-video-bitrate-pct">85%</span>
+                        </div>
+                        <input type="range" class="slider-input" id="slider-video-quality" min="10" max="100" step="5" value="85">
+                    </div>
+
+                    <!-- FPS Interpolation (RIFE) Card -->
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--bg-glass-stroke); border-radius: var(--radius-md); padding: 14px 16px; margin-top: 14px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <div style="font-weight: 700; font-size: 14px;" data-i18n="rife_title">Interpolasi Frame (RIFE)</div>
+                                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;" data-i18n="rife_desc">Urutan: Interpolasi Frame dilanjutkan Upscale Resolusi</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="switch-video-rife" checked>
+                                <span class="slider-switch"></span>
+                            </label>
+                        </div>
+
+                        <!-- Multiplier Options -->
+                        <div id="box-rife-options" style="margin-top: 14px;">
+                            <label class="form-label" style="font-size: 12px;" data-i18n="rife_multiplier_label">Pengganda Frame Rate</label>
+                            <div class="btn-group" id="btn-group-video-multiplier">
+                                <button class="btn-group-item active" data-multiplier="2x">2x FPS</button>
+                                <button class="btn-group-item" data-multiplier="3x">3x FPS</button>
+                                <button class="btn-group-item" data-multiplier="4x">4x FPS</button>
+                            </div>
+
+                            <!-- UHD Mode Switch -->
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding: 8px 12px; background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border: 1px solid var(--bg-glass-stroke);">
+                                <div>
+                                    <div style="font-weight: 600; font-size: 13px;" data-i18n="rife_uhd_title">Mode UHD (Resolusi &gt;= 2K)</div>
+                                    <div style="font-size: 11px; color: var(--text-secondary);" data-i18n="rife_uhd_desc">Perhitungan optical flow teroptimasi untuk resolusi tinggi.</div>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="switch-video-uhd">
+                                    <span class="slider-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-card" id="video-progress-box" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <span style="font-weight: 600; font-size: 13px;" id="video-progress-status" data-i18n="status_processing">Memproses video...</span>
+                        <span style="font-weight: 700; font-size: 15px;" id="video-progress-pct">0%</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;" id="video-progress-details">Menyiapkan pipeline pemrosesan...</div>
+                    <div class="progress-bar-bg" style="margin-top: 8px;">
+                        <div class="progress-bar-fill" id="video-progress-bar"></div>
+                    </div>
+                    <div id="video-progress-actions" style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 8px;">
+                        <button class="btn btn-secondary" id="btn-cancel-video-upscale" data-i18n="btn_cancel">Batalkan</button>
+                    </div>
+                </div>
+
+                <!-- Dual Action Bottom Bar -->
+                <div class="action-bar-dual">
+                    <button class="btn btn-secondary btn-preview" id="btn-preview-video-3s" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                        <span data-i18n="btn_preview_video">Pratinjau 3d</span>
+                    </button>
+                    <button class="btn btn-primary btn-main" id="btn-start-video-upscale" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        <span data-i18n="btn_start_video_upscale">Mulai Upscale</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- VIEW 4: BACKGROUND REMOVER -->
+            <section id="view-bgremover" class="view-section">
+                <h1 class="page-title" data-i18n="nav_bgremover">Hapus Background</h1>
+                <p class="page-desc" data-i18n="bgremover_desc">Potong latar belakang secara otomatis, perbaiki detail dengan kuas presisi, dan ganti warna latar belakang.</p>
+
+                <div class="dropzone" id="bg-dropzone">
+                    <svg class="dropzone-icon" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/></svg>
+                    <div class="dropzone-title" data-i18n="bg_dropzone_title">Pilih atau Tarik Foto Objek</div>
+                    <div class="dropzone-hint" data-i18n="bg_dropzone_hint">Mendukung format gambar potret, produk, atau pas foto</div>
+                    <input type="file" id="bg-file-input" accept="image/*" style="display: none;">
+                </div>
+
+                <div id="bg-editor-container" class="bg-studio-layout" style="display: none;">
+                    <!-- LEFT COLUMN: Workspace Stage (Canvas, Zoom Controls & Undo/Redo) -->
+                    <div class="bg-workspace-col">
+                        <!-- Top Workspace Bar -->
+                        <div class="bg-workspace-header">
+                            <div class="bg-workspace-meta">
+                                <span class="bg-workspace-badge" data-i18n="bg_workspace_title">Kanvas Kerja</span>
+                                <span id="bg-zoom-indicator" class="bg-zoom-badge">1.0x (Layar)</span>
+                            </div>
+                            <div class="bg-workspace-actions">
+                                <button class="btn btn-tonal btn-sm" id="btn-bg-undo" style="padding: 6px 12px; font-size: 12px;" title="Undo" data-i18n="btn_undo" data-i18n-title="title_undo">↶ Urungkan</button>
+                                <button class="btn btn-tonal btn-sm" id="btn-bg-redo" style="padding: 6px 12px; font-size: 12px;" title="Redo" data-i18n="btn_redo" data-i18n-title="title_redo">↷ Ulangi</button>
+                                <button class="btn btn-tonal btn-sm" id="btn-bg-reset" style="padding: 6px 12px; font-size: 12px;" data-i18n="btn_reset">Reset</button>
+                            </div>
+                        </div>
+
+                        <!-- Canvas Viewport -->
+                        <div class="canvas-wrapper" id="bg-canvas-wrapper">
+                            <!-- Floating Zoom Controls in Top Right -->
+                            <div class="compare-zoom-controls" id="bg-zoom-controls">
+                                <button class="compare-zoom-btn" id="btn-bg-zoom-out" title="Perkecil">−</button>
+                                <button class="compare-zoom-pill" id="btn-bg-zoom-reset" title="Reset Zoom">1.0x</button>
+                                <button class="compare-zoom-btn" id="btn-bg-zoom-in" title="Perbesar">+</button>
+                                <button class="compare-zoom-btn" id="btn-bg-zoom-toggle" title="100% Detail">100%</button>
+                            </div>
+
+                            <canvas id="bg-canvas"></canvas>
+                        </div>
+
+                        <!-- Canvas Hint Bar -->
+                        <div class="bg-workspace-footer">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="opacity: 0.7;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            <span data-i18n="bg_canvas_hint">Gulir mouse atau klik 2x untuk perbesar • Gunakan alat Geser &amp; Zoom untuk navigasi detail</span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Unified Adobe-style Studio Panel -->
+                    <div class="bg-sidebar-col">
+                        <div class="bg-studio-panel">
+                            <!-- 1. AI Auto Segmentation Primary Action -->
+                            <button class="btn-ai-magic" id="btn-auto-segmentation" style="width: 100%; margin: 0;">
+                                <svg viewBox="0 0 24 24"><path d="M7.5 5.6L5 7l1.4-2.5L5 2l2.5 1.4L10 2 8.6 4.5 10 7 7.5 5.6zm12 9.8L22 14l-1.4 2.5L22 19l-2.5-1.4L17 19l1.4-2.5L17 14l2.5 1.4zM22 2l-2.5 1.4L17 2l1.4 2.5L17 7l2.5-1.4L22 7l-1.4-2.5L22 2zm-7.63 5.29c-.39-.39-1.02-.39-1.41 0L1.29 18.96c-.39.39-.39 1.02 0 1.41l2.34 2.34c.39.39 1.02.39 1.41 0L16.7 11.05c.39-.39.39-1.02 0-1.41l-2.33-2.35zm-1.06 3.47l-1.77-1.77 1.41-1.41 1.77 1.77-1.41 1.41z"/></svg>
+                                <span data-i18n="bg_auto_seg_btn">Segmentasi Otomatis (AI)</span>
+                            </button>
+
+                            <div class="studio-divider"></div>
+
+                            <!-- 2. Manual Tools 4-Tab Bar -->
+                            <div class="studio-section">
+                                <div class="studio-section-label" data-i18n="bg_manual_tools_title">Alat Penyempurnaan Manual</div>
+                                <div class="bg-tool-tab-bar" id="btn-group-bg-tools">
+                                    <button class="bg-tool-tab btn-group-item active" id="btn-tool-autocut" data-tool="autocut">
+                                        <svg class="bg-tool-icon" viewBox="0 0 24 24"><path d="M7.5 5.6L5 7l1.4-2.5L5 2l2.5 1.4L10 2 8.6 4.5 10 7 7.5 5.6zm12 9.8L22 14l-1.4 2.5L22 19l-2.5-1.4L17 19l1.4-2.5L17 14l2.5 1.4zM14.37 7.29c-.39-.39-1.02-.39-1.41 0L1.29 18.96c-.39.39-.39 1.02 0 1.41l2.34 2.34c.39.39 1.02.39 1.41 0L16.7 11.05c.39-.39.39-1.02 0-1.41l-2.33-2.35z"/></svg>
+                                        <span data-i18n="tool_autocut">Auto Color</span>
+                                    </button>
+                                    <button class="bg-tool-tab btn-group-item" id="btn-tool-erase" data-tool="erase">
+                                        <svg class="bg-tool-icon" viewBox="0 0 24 24"><path d="M15.14 3c-.41 0-.82.16-1.14.47l-4.71 4.71-3.79 3.79c-.63.63-.63 1.65 0 2.28l4.49 4.49c.63.63 1.65.63 2.28 0l8.5-8.5c.63-.63.63-1.65 0-2.28L16.28 3.47c-.32-.31-.73-.47-1.14-.47zm-1.85 7.46l2.12-2.12 2.12 2.12-2.12 2.12-2.12-2.12zm-3.53 3.53l2.12-2.12 2.12 2.12-2.12 2.12-2.12-2.12zM2 20h20v2H2v-2z"/></svg>
+                                        <span data-i18n="tool_erase">Hapus</span>
+                                    </button>
+                                    <button class="bg-tool-tab btn-group-item" id="btn-tool-restore" data-tool="restore">
+                                        <svg class="bg-tool-icon" viewBox="0 0 24 24"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34a.996.996 0 0 0-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"/></svg>
+                                        <span data-i18n="tool_restore">Pulihkan</span>
+                                    </button>
+                                    <button class="bg-tool-tab btn-group-item" id="btn-tool-pan" data-tool="pan">
+                                        <svg class="bg-tool-icon" viewBox="0 0 24 24"><path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"/></svg>
+                                        <span data-i18n="tool_pan">Geser</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 3. Sliders & Contiguous Switch -->
+                            <div class="studio-section">
+                                <div class="bg-sliders-stack">
+                                    <div class="form-group" style="margin-bottom: 8px;">
+                                        <div class="form-label"><span data-i18n="tolerance_label">Toleransi Warna</span> <span class="value" id="val-tolerance">35</span></div>
+                                        <input type="range" class="slider-input" id="slider-tolerance" min="5" max="100" value="35">
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 0;">
+                                        <div class="form-label"><span data-i18n="brush_size_label">Ukuran Kuas</span> <span class="value" id="val-brush-size">30px</span></div>
+                                        <input type="range" class="slider-input" id="slider-brush-size" min="5" max="100" value="30">
+                                    </div>
+                                </div>
+
+                                <div class="bg-contiguous-row">
+                                    <div class="bg-contiguous-text">
+                                        <div class="bg-contiguous-title" data-i18n="magic_contiguous_title">Hanya piksel tersambung</div>
+                                        <div class="bg-contiguous-desc" data-i18n="magic_contiguous_desc">Hapus area terhubung secara otomatis.</div>
+                                    </div>
+                                    <label class="switch" for="switch-magic-contiguous">
+                                        <input type="checkbox" id="switch-magic-contiguous" checked>
+                                        <span class="slider-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="studio-divider"></div>
+
+                            <!-- 4. Background Color Options -->
+                            <div class="studio-section bg-color-section" style="position: relative;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <span class="studio-section-label" style="margin-bottom: 0;" data-i18n="bg_color_label">Pilihan Warna Latar Belakang</span>
+                                    <span id="bg-color-current-name" class="bg-color-badge">Transparan</span>
+                                </div>
+                                <div class="palette-row" style="justify-content: space-between;">
+                                    <div class="color-chip active" data-color="transparent" data-name="Transparan" style="background: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'8\' height=\'8\' fill=\'%23666\'%3E%3Crect width=\'4\' height=\'4\'/%3E%3Crect x=\'4\' y=\'4\' width=\'4\' height=\'4\'/%3E%3C/svg%3E');" title="Transparan" data-i18n-title="color_transparent"></div>
+                                    <div class="color-chip" data-color="#ffffff" data-name="Putih" style="background: #ffffff;" title="Putih" data-i18n-title="color_white"></div>
+                                    <div class="color-chip" data-color="#D32F2F" data-name="Merah (Pas Foto)" style="background: #D32F2F;" title="Merah" data-i18n-title="color_red"></div>
+                                    <div class="color-chip" data-color="#1976D2" data-name="Biru (Pas Foto)" style="background: #1976D2;" title="Biru" data-i18n-title="color_blue"></div>
+                                    <div class="color-chip" data-color="#000000" data-name="Hitam" style="background: #000000;" title="Hitam" data-i18n-title="color_black"></div>
+                                    <div class="color-chip custom-color-chip" id="btn-custom-color-chip" data-color="#10b981" data-name="Kustom" title="Pilih Warna Kustom" data-i18n-title="color_custom">
+                                        <svg class="custom-palette-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.23c-.22.22-.35.53-.35.85 0 .67.54 1.22 1.22 1.22h2.95c.32 0 .63-.13.85-.35l.62-.62C10.22 19.72 11.08 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!-- Custom Glassmorphic Dark Color Picker Popover -->
+                                <div class="color-picker-popover" id="bg-color-popover">
+                                    <div class="color-popover-header">
+                                        <div class="color-popover-title">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.23 19.58 10.57 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                                            <span data-i18n="custom_color_title">Palet Warna Kustom</span>
+                                        </div>
+                                        <button type="button" class="color-popover-close" id="btn-close-color-popover" title="Tutup">&times;</button>
+                                    </div>
+
+                                    <!-- 2D Saturation/Value Canvas Area -->
+                                    <div class="color-picker-sb-area" id="color-sb-area">
+                                        <div class="color-picker-sb-white"></div>
+                                        <div class="color-picker-sb-black"></div>
+                                        <div class="color-picker-handle" id="color-sb-handle"></div>
+                                    </div>
+
+                                    <!-- Sliders & Eyedropper Row -->
+                                    <div class="color-picker-controls">
+                                        <div class="color-picker-sliders">
+                                            <div class="hue-slider-track">
+                                                <input type="range" class="hue-slider" id="color-hue-slider" min="0" max="360" value="160">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn-eyedropper" id="btn-eyedropper" title="Ambil warna dari layar / foto" data-i18n-title="btn_eyedropper_title">
+                                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.71 5.63l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-3.12 3.12-1.93-1.91-1.41 1.41 1.42 1.42L3 16.25V21h4.75l8.92-8.92 1.42 1.42 1.41-1.41-1.92-1.92 3.12-3.12c.4-.4.4-1.03.01-1.42zM6.92 19L5 17.08l8.06-8.06 1.92 1.92L6.92 19z"/></svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- Hex Code & Preview Bar -->
+                                    <div class="color-hex-bar">
+                                        <div class="color-preview-box" id="color-preview-box" style="background-color: #10b981;"></div>
+                                        <div class="color-hex-input-wrapper">
+                                            <span class="color-hex-prefix">#</span>
+                                            <input type="text" class="color-hex-input" id="color-hex-input" value="10B981" maxlength="6" spellcheck="false">
+                                        </div>
+                                        <button type="button" class="btn-color-apply" id="btn-color-apply">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                            <span data-i18n="btn_apply_color">Terapkan</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Quick Formal & Studio Swatches -->
+                                    <div class="color-swatches-title" data-i18n="color_swatches_title">Warna Pas Foto &amp; Studio</div>
+                                    <div class="color-swatches-grid">
+                                        <button type="button" class="swatch-btn" data-color="#D32F2F" title="Merah SKCK/KTP (#D32F2F)" style="background:#D32F2F;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#B71C1C" title="Merah Marun (#B71C1C)" style="background:#B71C1C;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#1976D2" title="Biru Ijazah (#1976D2)" style="background:#1976D2;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#0D47A1" title="Biru Tua (#0D47A1)" style="background:#0D47A1;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#FFFFFF" title="Putih Studio (#FFFFFF)" style="background:#FFFFFF;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#E5E7EB" title="Abu Terang (#E5E7EB)" style="background:#E5E7EB;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#9CA3AF" title="Abu Netral (#9CA3AF)" style="background:#9CA3AF;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#374151" title="Abu Gelap (#374151)" style="background:#374151;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#111827" title="Hitam Pekat (#111827)" style="background:#111827;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#10B981" title="Emerald (#10B981)" style="background:#10B981;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#F59E0B" title="Amber Kuning (#F59E0B)" style="background:#F59E0B;"></button>
+                                        <button type="button" class="swatch-btn" data-color="#8B5CF6" title="Ungu Elegan (#8B5CF6)" style="background:#8B5CF6;"></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="studio-divider"></div>
+
+                            <!-- 5. Compact Handoff Card -->
+                            <div class="handoff-card-compact" id="btn-send-to-upscale">
+                                <div class="handoff-compact-left">
+                                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                                    <div class="handoff-compact-text">
+                                        <span class="handoff-compact-title" data-i18n="bg_handoff_title">Lanjutkan ke AI Upscaler</span>
+                                        <span class="handoff-compact-sub" data-i18n="bg_handoff_desc">Tingkatkan resolusi hingga 4K</span>
+                                    </div>
+                                </div>
+                                <span class="handoff-arrow">&rarr;</span>
+                            </div>
+
+                            <!-- 6. Bottom Action Bar -->
+                            <div class="bg-sidebar-actions">
+                                <button class="btn btn-secondary" id="btn-change-bg-photo">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 7v2.99s-1.99.01-2 0V7h-3s.01-1.99 0-2h3V2h2v3h3v2h-3zm-3 4V8h-3V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8h-3z"/></svg>
+                                    <span data-i18n="btn_change_photo">Ganti Foto</span>
+                                </button>
+                                <button class="btn btn-primary btn-main" id="btn-save-bg">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                                    <span data-i18n="btn_save_photo">Simpan Foto</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 5: VIDEO COMPRESSOR -->
+            <section id="view-compressor" class="view-section">
+                <h1 class="page-title" data-i18n="nav_compressor">Video Compression</h1>
+                <p class="page-desc" data-i18n="compressor_desc">Optimalkan ukuran file video dengan bitrate adaptif tanpa merusak ketajaman dan resolusi asli.</p>
+
+                <div class="dropzone" id="compress-dropzone">
+                    <svg class="dropzone-icon" viewBox="0 0 24 24"><path d="M4 9h16v2H4zm0 4h16v2H4zm4 4h8v2H8zM8 5h8v2H8z"/></svg>
+                    <div class="dropzone-title" data-i18n="compress_dropzone_title">Pilih Video untuk Dikompres</div>
+                    <div class="dropzone-hint" data-i18n="compress_dropzone_hint">Mendukung file MP4, MKV, MOV, dan WEBM</div>
+                    <input type="file" id="compress-file-input" accept="video/*" style="display: none;">
+                </div>
+
+                <div id="compress-controls-container" style="display: none;">
+                    <!-- Source Video Information -->
+                    <div class="card" id="compress-source-card">
+                        <div class="source-info-header">
+                            <div class="card-title" style="margin-bottom: 0;" data-i18n="video_info_title">Informasi Video Sumber</div>
+                            <button class="btn btn-secondary" id="btn-change-compress-video" style="padding: 6px 14px; font-size: 12px;" data-i18n="btn_change_video">Ganti Video</button>
+                        </div>
+                        <div id="compress-meta-tags" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;"></div>
+                    </div>
+
+                    <!-- Compression Mode Selection (4 Mode Cards) -->
+                    <div class="card">
+                        <div class="card-title" data-i18n="compress_mode_title">Pilih Mode Kompresi</div>
+
+                        <div class="mode-card-list" id="mode-card-list-compress">
+                            <!-- Mode 1: Maximum Quality -->
+                            <div class="mode-card" data-preset="smart">
+                                <div class="mode-card-radio"></div>
+                                <div class="mode-card-content">
+                                    <div class="mode-card-title" data-i18n="mode_max_quality_title">Kualitas Maksimal (~30% kompresi)</div>
+                                    <div class="mode-card-desc" data-i18n="mode_max_quality_desc">Resolusi &amp; FPS asli • Kualitas visual optimal</div>
+                                </div>
+                            </div>
+
+                            <!-- Mode 2: Balanced (Default) -->
+                            <div class="mode-card active" data-preset="balanced">
+                                <div class="mode-card-radio"></div>
+                                <div class="mode-card-content">
+                                    <div class="mode-card-title" data-i18n="mode_balanced_title">Seimbang (~50% kompresi)</div>
+                                    <div class="mode-card-desc" data-i18n="mode_balanced_desc">Resolusi &amp; FPS asli • Pengurangan ukuran optimal</div>
+                                </div>
+                            </div>
+
+                            <!-- Mode 3: Storage Saver -->
+                            <div class="mode-card" data-preset="saver">
+                                <div class="mode-card-radio"></div>
+                                <div class="mode-card-content">
+                                    <div class="mode-card-title" data-i18n="mode_saver_title">Hemat Penyimpanan (~70% kompresi)</div>
+                                    <div class="mode-card-desc" data-i18n="mode_saver_desc">Resolusi &amp; FPS asli • Ukuran file minimal</div>
+                                </div>
+                            </div>
+
+                            <!-- Mode 4: Custom -->
+                            <div class="mode-card" data-preset="custom">
+                                <div class="mode-card-radio"></div>
+                                <div class="mode-card-content">
+                                    <div class="mode-card-title" data-i18n="mode_custom_title">Kustom</div>
+                                    <div class="mode-card-desc" data-i18n="mode_custom_desc">Konfigurasi manual bitrate, resolusi, dan codec</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Controls (shown when Kustom selected) -->
+                        <div id="custom-compress-options" style="display: none; margin-top: 18px; border-top: 1px solid var(--bg-glass-stroke); padding-top: 14px;">
+                            <div class="form-group">
+                                <div class="form-label"><span data-i18n="target_bitrate_label">Target Bitrate Video</span> <span class="value" id="val-target-bitrate">8.0 Mbps</span></div>
+                                <input type="range" class="slider-input" id="slider-target-bitrate" min="1" max="25" step="0.5" value="8">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" data-i18n="res_scale_label">Resolusi Output</label>
+                                <div class="btn-group" id="btn-group-compress-res">
+                                    <button class="btn-group-item active" data-res="original" data-i18n="res_original">Asli</button>
+                                    <button class="btn-group-item" data-res="1080p">1080p</button>
+                                    <button class="btn-group-item" data-res="720p">720p</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" data-i18n="compress_codec_label">Format Kompresi Video</label>
+                                <div class="btn-group" id="btn-group-compress-codec">
+                                    <button class="btn-group-item active" data-codec="h264">H.264 (AVC)</button>
+                                    <button class="btn-group-item" data-codec="hevc">H.265 (HEVC)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic HDR Visual Effect Switch -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding: 12px 14px; background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border: 1px solid var(--bg-glass-stroke);">
+                            <div>
+                                <div style="font-weight: 600; font-size: 13px;" data-i18n="compress_hdr_title">Efek Visual HDR Dinamis</div>
+                                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;" data-i18n="compress_hdr_desc">Meningkatkan rentang kontras dinamis dan kejelasan detail bayangan tanpa distorsi warna.</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="switch-compress-force-hdr">
+                                <span class="slider-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Compression Estimation Card -->
+                    <div class="card" id="compress-estimate-card">
+                        <div class="card-title" data-i18n="compress_est_title">Estimasi Kompresi</div>
+                        <div style="display: flex; align-items: baseline; gap: 12px; margin-top: 10px;">
+                            <span id="compress-est-size-display" style="font-size: 22px; font-weight: 800; color: #ffffff;">-- MB &rarr; ~-- MB</span>
+                            <span class="feature-badge" id="compress-savings-badge" style="background: rgba(34, 197, 94, 0.15); color: #4ade80; border-color: rgba(34, 197, 94, 0.3); margin-top: 0;">50% Penghematan</span>
+                        </div>
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;" data-i18n="compress_est_note">
+                            Bitrate disesuaikan secara adaptif sesuai standar encoding media sosial terkini untuk memastikan video tetap tajam saat diunggah.
+                        </div>
+                    </div>
+
+                    <!-- Progress -->
+                    <div class="progress-card" id="compress-progress-box" style="display: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-weight: 600; font-size: 13px;" id="compress-progress-status" data-i18n="status_compressing">Mengompres video...</span>
+                            <span style="font-weight: 700; font-size: 15px;" id="compress-progress-pct">0%</span>
+                        </div>
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;" id="compress-progress-details">Menyiapkan encoder kompresi...</div>
+                        <div class="progress-bar-bg" style="margin-top: 8px;">
+                            <div class="progress-bar-fill" id="compress-progress-bar"></div>
+                        </div>
+                        <div id="compress-progress-actions" style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 8px;">
+                            <button class="btn btn-secondary" id="btn-cancel-compress" data-i18n="btn_cancel">Batalkan</button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="btn-start-compress" style="width: 100%;" data-i18n="btn_start_compress">Mulai Kompresi Video</button>
+                </div>
+            </section>
+
+            <!-- VIEW 6: MEDIA DOWNLOADER -->
+            <section id="view-downloader" class="view-section">
+                <h1 class="page-title" data-i18n="nav_downloader">Media Downloader</h1>
+                <p class="page-desc" data-i18n="downloader_desc">Unduh video HD tanpa watermark, audio MP3 jernih, dan foto carousel dari TikTok, YouTube, SoundCloud, Instagram, X, dan Douyin.</p>
+
+                <!-- Input Card with Platform Chips & Clipboard Detection -->
+                <div class="card">
+                    <!-- Clipboard Detection Banner -->
+                    <div class="clipboard-banner" id="clipboard-banner" style="display: none;">
+                        <div class="clipboard-banner-text">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                            <span><span data-i18n="dl_clip_detected">Tautan terdeteksi di clipboard:</span> <strong id="clip-url-text"></strong></span>
+                        </div>
+                        <button class="btn btn-secondary" id="btn-clip-paste" style="padding: 4px 12px; font-size: 12px;" data-i18n="btn_paste">Tempel</button>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" class="input-text" id="downloader-url-input" placeholder="Tempel tautan video di sini..." data-i18n-placeholder="downloader_placeholder">
+                        <button class="btn btn-secondary" id="btn-downloader-paste" data-i18n="btn_paste">Tempel</button>
+                        <button class="btn btn-primary" id="btn-downloader-analyze" data-i18n="btn_analyze">Analisis Tautan</button>
+                    </div>
+
+                    <!-- Platform Chips -->
+                    <div id="downloader-platform-chips" style="display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;">
+                        <span class="feature-badge platform-chip" data-platform="TikTok">TikTok</span>
+                        <span class="feature-badge platform-chip" data-platform="YouTube">YouTube</span>
+                        <span class="feature-badge platform-chip" data-platform="YT Music">YT Music</span>
+                        <span class="feature-badge platform-chip" data-platform="Instagram">Instagram</span>
+                        <span class="feature-badge platform-chip" data-platform="SoundCloud">SoundCloud</span>
+                        <span class="feature-badge platform-chip" data-platform="X (Twitter)">X (Twitter)</span>
+                        <span class="feature-badge platform-chip" data-platform="Douyin">Douyin</span>
+                    </div>
+
+                    <!-- Downloader Features Highlight Card -->
+                    <div class="feature-list-card">
+                        <div class="feature-list-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                            <span data-i18n="dl_features_title">Fitur Downloader</span>
+                        </div>
+                        <div class="feature-list-grid">
+                            <div class="feature-list-item">
+                                <div class="feature-list-icon"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zm-9 9h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg></div>
+                                <div>
+                                    <div class="feature-list-name" data-i18n="feat_insta_title">Instagram Carousel</div>
+                                    <div class="feature-list-detail" data-i18n="feat_insta_desc">Unduh semua foto &amp; video dari postingan slide carousel.</div>
+                                </div>
+                            </div>
+                            <div class="feature-list-item">
+                                <div class="feature-list-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+                                <div>
+                                    <div class="feature-list-name" data-i18n="feat_sc_title">SoundCloud HD</div>
+                                    <div class="feature-list-detail" data-i18n="feat_sc_desc">Unduh audio format MP3 kualitas terbaik langsung dari sumber.</div>
+                                </div>
+                            </div>
+                            <div class="feature-list-item">
+                                <div class="feature-list-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
+                                <div>
+                                    <div class="feature-list-name" data-i18n="feat_prev_title">Pratinjau Terintegrasi</div>
+                                    <div class="feature-list-detail" data-i18n="feat_prev_desc">Putar video atau dengarkan audio sebelum mengunduh.</div>
+                                </div>
+                            </div>
+                            <div class="feature-list-item">
+                                <div class="feature-list-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                                <div>
+                                    <div class="feature-list-name" data-i18n="feat_verif_title">Verifikasi Integritas</div>
+                                    <div class="feature-list-detail" data-i18n="feat_verif_desc">Memastikan file lengkap dan tidak korup setelah proses unduh.</div>
+                                </div>
+                            </div>
+                            <div class="feature-list-item">
+                                <div class="feature-list-icon"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+                                <div>
+                                    <div class="feature-list-name" data-i18n="feat_ai_title">Integrasi AI Upscaler</div>
+                                    <div class="feature-list-detail" data-i18n="feat_ai_desc">Kirim hasil unduhan langsung ke AI Upscaler untuk ditingkatkan.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Downloader Result Card -->
+                <div class="card" id="downloader-result-card" style="display: none;">
+                    <div style="display: flex; gap: 18px; align-items: flex-start;">
+                        <img id="downloader-thumb" src="" alt="Thumbnail" style="width: 140px; height: 90px; object-fit: cover; border-radius: var(--radius-md); border: 1px solid var(--bg-glass-stroke);">
+                        <div style="flex: 1;">
+                            <div class="feature-badge" id="downloader-platform-badge" style="margin-top: 0; margin-bottom: 6px;">TikTok</div>
+                            <h3 id="downloader-title" style="font-size: 16px; font-weight: 700; margin-bottom: 4px;" data-i18n="downloader_media_title">Judul Media</h3>
+                            <div id="downloader-author" style="font-size: 13px; color: var(--text-secondary);">@author</div>
+                        </div>
+                    </div>
+
+                    <!-- Quality Options -->
+                    <div style="margin-top: 18px; border-top: 1px solid var(--bg-glass-stroke); padding-top: 14px;">
+                        <label class="form-label" data-i18n="downloader_choose_quality">Pilih Kualitas Unduhan</label>
+                        <div id="downloader-options-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                    </div>
+
+                    <div class="progress-card" id="downloader-progress-box" style="display: none; margin-top: 16px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="font-weight: 600;" id="downloader-progress-status" data-i18n="status_downloading">Mengunduh...</span>
+                            <span style="font-weight: 700;" id="downloader-progress-pct">0%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="downloader-progress-bar"></div>
+                        </div>
+                    </div>
+
+                    <!-- Media Preview Player -->
+                    <div id="downloader-preview-box" style="display: none; margin-top: 14px; border-top: 1px solid var(--bg-glass-stroke); padding-top: 14px;">
+                        <label class="form-label" data-i18n="downloader_preview_title">Pratinjau Media</label>
+                        <video id="downloader-video-preview" controls style="width: 100%; max-height: 260px; border-radius: var(--radius-md); background: #000; margin-top: 8px; display: none;"></video>
+                        <audio id="downloader-audio-preview" controls style="width: 100%; margin-top: 8px; display: none;"></audio>
+                        <img id="downloader-image-preview" alt="Preview" style="width: 100%; max-height: 260px; object-fit: contain; border-radius: var(--radius-md); background: #000; margin-top: 8px; display: none;" />
+                        <div id="downloader-preview-error" style="display: none; padding: 10px; margin-top: 8px; background: rgba(239,68,68,0.15); border: 1px solid var(--danger); border-radius: var(--radius-md); font-size: 12px; color: #fca5a5;"></div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 16px;">
+                        <button class="btn btn-secondary" id="btn-downloader-preview-toggle" style="flex: 1;" data-i18n="btn_preview_media">Pratinjau Media</button>
+                        <button class="btn btn-primary" id="btn-downloader-start" style="flex: 2;" data-i18n="btn_download_file">Unduh File</button>
+                    </div>
+
+                    <!-- Post-Download Quick Actions -->
+                    <div id="downloader-post-actions" style="display: none; gap: 10px; margin-top: 14px; border-top: 1px solid var(--bg-glass-stroke); padding-top: 12px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" id="btn-dl-open-file" data-i18n="btn_open_file">Buka File</button>
+                        <button class="btn btn-tonal" id="btn-dl-send-upscale" data-i18n="btn_dl_send_upscale">Tingkatkan di AI Upscaler</button>
+                        <button class="btn btn-tonal" id="btn-dl-send-compress" data-i18n="btn_dl_send_compress">Kompres di Video Kompresor</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 7: HARDWARE & BENCHMARK -->
+            <section id="view-hardware" class="view-section">
+                <h1 class="page-title" data-i18n="nav_hardware">Hardware &amp; Vulkan Benchmark</h1>
+                <p class="page-desc" data-i18n="hardware_desc">Informasi akselerasi grafis, perangkat komputasi Vulkan, dan performa pemrosesan GPU.</p>
+
+                <div class="card">
+                    <div class="card-title" data-i18n="sys_spec_title">Spesifikasi Sistem &amp; GPU</div>
+                    <div id="hardware-details-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 14px;"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" data-i18n="benchmark_title">Uji Performa Komputasi Vulkan</div>
+                    <div class="card-subtitle" data-i18n="benchmark_subtitle">Jalankan pengujian tile inferensi AI untuk mengukur kecepatan GPU Anda.</div>
+
+                    <button class="btn btn-primary" id="btn-run-benchmark" data-i18n="btn_run_benchmark">Mulai Uji Komputasi GPU</button>
+
+                    <div id="benchmark-result-box" style="display: none; margin-top: 18px; border-top: 1px solid var(--bg-glass-stroke); padding-top: 14px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
+                            <div class="card" style="padding: 14px; margin-bottom: 0;">
+                                <div style="font-size: 11px; color: var(--text-secondary);" data-i18n="bench_ms_tile">Kecepatan per Tile</div>
+                                <div id="bench-val-ms" style="font-size: 20px; font-weight: 700; color: #ffffff; margin-top: 4px;">-- ms</div>
+                            </div>
+                            <div class="card" style="padding: 14px; margin-bottom: 0;">
+                                <div style="font-size: 11px; color: var(--text-secondary);" data-i18n="bench_1080p">Estimasi Foto 1080p</div>
+                                <div id="bench-val-1080p" style="font-size: 20px; font-weight: 700; color: #ffffff; margin-top: 4px;">-- s</div>
+                            </div>
+                            <div class="card" style="padding: 14px; margin-bottom: 0;">
+                                <div style="font-size: 11px; color: var(--text-secondary);" data-i18n="bench_fps">Performa Video 720p</div>
+                                <div id="bench-val-fps" style="font-size: 20px; font-weight: 700; color: #ffffff; margin-top: 4px;">-- FPS</div>
+                            </div>
+                        </div>
+                        <div class="feature-badge" style="margin-top: 12px; background: rgba(34, 197, 94, 0.15); color: #4ade80; border-color: rgba(34, 197, 94, 0.3);" data-i18n="bench_passed">✓ Lolos Uji Akselerasi Vulkan</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 8: QUEUE -->
+            <section id="view-queue" class="view-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <h1 class="page-title" data-i18n="nav_queue">Antrian Tugas</h1>
+                        <p class="page-desc" style="margin-bottom: 0;" data-i18n="queue_desc">Daftar riwayat pemrosesan dan antrian file.</p>
+                    </div>
+                    <button class="btn btn-secondary" id="btn-clear-queue" data-i18n="btn_clear_history">Bersihkan Riwayat</button>
+                </div>
+
+                <div id="queue-list-container" style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="text-align: center; padding: 50px 0; color: var(--text-tertiary);" data-i18n="queue_empty">Belum ada tugas dalam antrian.</div>
+                </div>
+            </section>
+
+            <!-- VIEW 9: SETTINGS -->
+            <section id="view-settings" class="view-section">
+                <h1 class="page-title" data-i18n="nav_settings">Pengaturan Aplikasi</h1>
+                <p class="page-desc" data-i18n="settings_desc">Kelola preferensi bahasa, tema, dan direktori penyimpanan.</p>
+
+                <div class="card">
+                    <div class="card-title" data-i18n="settings_lang_title">Bahasa / Language</div>
+                    <div class="card-subtitle" data-i18n="settings_lang_desc">Pilih bahasa tampilan antarmuka.</div>
+
+                    <div class="btn-group" id="btn-group-settings-lang">
+                        <button class="btn-group-item active" data-lang="id">Bahasa Indonesia</button>
+                        <button class="btn-group-item" data-lang="en">English (US)</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" data-i18n="settings_folder_title">Folder Penyimpanan Hasil</div>
+                    <div class="card-subtitle" data-i18n="settings_folder_desc">Lokasi default untuk menyimpan file foto dan video hasil pemrosesan.</div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" class="input-text" id="input-output-dir" readonly>
+                        <button class="btn btn-secondary" id="btn-choose-output-dir" data-i18n="btn_change_folder">Ubah</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" data-i18n="settings_models_title">Manajer Model AI (Vulkan NCNN)</div>
+                    <div class="card-subtitle" data-i18n="settings_models_desc">Status neural network lokal dan mesin akselerasi GPU.</div>
+                    <div id="settings-models-container" style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" data-i18n="section_developer">Pengembang &amp; Informasi</div>
+                    <div class="dev-card" id="btn-dev-card-settings" style="margin-top: 10px;">
+                        <div class="dev-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.99v9.11c-.01 2.1-.8 4.2-2.34 5.69-1.74 1.7-4.22 2.5-6.66 2.18-2.6-.32-4.97-2.02-6.04-4.42-1.07-2.39-.77-5.26.79-7.39 1.55-2.12 4.15-3.32 6.77-3.07.01 1.48-.01 2.96 0 4.44-1.22-.16-2.49.2-3.33 1.07-.84.86-1.15 2.14-.81 3.28.34 1.14 1.42 1.99 2.61 2.08 1.18.1 2.37-.53 2.87-1.61.32-.69.41-1.47.4-2.23V.02z"/></svg>
+                        </div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 15px;" data-i18n="settings_dev_title">Dikembangkan oleh Yuuka</div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;" data-i18n="settings_dev_desc">@yuukaonlyone_ • Klik untuk mengunjungi profil TikTok</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script src="app.js"></script>
+</body>
+</html>

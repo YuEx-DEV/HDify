@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_medium"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:strokeWidth="1.2dp"
+    app:strokeColor="@color/liquid_glass_stroke"
+    app:cardBackgroundColor="@color/liquid_card_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Header: Engine & Scale -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_engine_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Real-CUGAN (models-se)" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_scale"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="x2" />
+
+        </LinearLayout>
+
+        <!-- Metric 1: ms per tile -->
+        <TextView
+            android:id="@+id/tv_ms_per_tile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold"
+            tools:text="48 ms / tile" />
+
+        <!-- Metric 2: 1080p photo estimation -->
+        <TextView
+            android:id="@+id/tv_est_1080p"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            tools:text="Estimasi Foto 1080p: 1.9 detik (40 tile)" />
+
+        <!-- Metric 3: 720p video estimation -->
+        <TextView
+            android:id="@+id/tv_est_video_720p"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            tools:text="Estimasi Video 720p/30fps: 25.9 detik / menit (69.4 FPS)" />
+
+        <!-- Status / Error -->
+        <TextView
+            android:id="@+id/tv_status_badge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:textColor="?attr/colorPrimary"
+            tools:text="Lolos inferensi Vulkan GPU" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

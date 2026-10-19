@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+    android:layout_marginBottom="@dimen/spacing_medium"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:strokeWidth="1.2dp"
+    app:strokeColor="@color/liquid_glass_stroke"
+    app:cardBackgroundColor="@color/liquid_card_bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Job Title -->
+        <TextView
+            android:id="@+id/tv_history_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginEnd="@dimen/spacing_small"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintTop_toTopOf="@id/chip_history_status"
+            app:layout_constraintBottom_toBottomOf="@id/chip_history_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/chip_history_status"
+            tools:text="Job #12 (Gambar)" />
+
+        <!-- Status Chip -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_history_status"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_tiny"
+            android:clickable="false"
+            android:focusable="false"
+            android:textStyle="bold"
+            app:chipStrokeWidth="0dp"
+            app:ensureMinTouchTargetSize="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete_history"
+            tools:text="Selesai" />
+
+        <!-- Delete History Item Button -->
+        <ImageButton
+            android:id="@+id/btn_delete_history"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_delete"
+            app:tint="?android:attr/textColorSecondary"
+            android:contentDescription="@string/action_delete"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/chip_history_status" />
+
+        <!-- Job Info / Engine / Scale / Date -->
+        <TextView
+            android:id="@+id/tv_history_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="1"
+            android:ellipsize="middle"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintTop_toBottomOf="@id/chip_history_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Real-ESRGAN (x4plus) • Skala x4 • 14:02:10" />
+
+        <!-- Error Message (if failed) -->
+        <TextView
+            android:id="@+id/tv_history_error"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorError"
+            android:visibility="gone"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintTop_toBottomOf="@id/tv_history_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="HD-HW-101: Vulkan device not available" />
+
+        <!-- Output URI (if completed) -->
+        <TextView
+            android:id="@+id/tv_history_output"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:textAppearance="?attr/textAppearanceLabelSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="1"
+            android:ellipsize="middle"
+            android:visibility="gone"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintTop_toBottomOf="@id/tv_history_error"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="content://media/external/images/media/401" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

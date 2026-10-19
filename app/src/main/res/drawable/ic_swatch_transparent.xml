@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="20dp"
+    android:viewportWidth="20"
+    android:viewportHeight="20">
+    <!-- Border -->
+    <path
+        android:fillColor="#8E8E93"
+        android:pathData="M3,3h14v14h-14z" />
+    <!-- 2x2 Checkerboard squares -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M3,3h7v7h-7zM10,10h7v7h-7z" />
+    <path
+        android:fillColor="#BDBDBD"
+        android:pathData="M10,3h7v7h-7zM3,10h7v7h-7z" />
+</vector>
