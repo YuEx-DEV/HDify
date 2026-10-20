@@ -547,4 +547,15 @@
     <string name="scale_short_format">x%1$d</string>
     <string name="scale_short_1x">x1</string>
     <string name="label_preview">Preview</string>
+
+    <!-- GitHub Update Checker -->
+    <string name="update_check_title">App Updates</string>
+    <string name="update_available_title">New Update Available!</string>
+    <string name="update_available_msg">Version %1$s is available on GitHub. Would you like to download it now?</string>
+    <string name="update_already_latest">You are already using the latest version (%1$s).</string>
+    <string name="update_check_failed">Failed to check for updates: %1$s</string>
+    <string name="btn_download_apk">Download APK</string>
+    <string name="btn_view_release">View on GitHub</string>
+    <string name="btn_later">Later</string>
+    <string name="btn_check_update">Check for Updates</string>
 </resources>

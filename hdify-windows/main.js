@@ -329,6 +329,85 @@ ipcMain.handle('fs:saveTempImage', async (event, dataUrl) => {
     return tempPath;
 });
 
+// GitHub Release Auto-Update Checker
+ipcMain.handle('system:checkUpdate', async () => {
+    return new Promise((resolve) => {
+        const https = require('https');
+        const currentVersion = app.getVersion() || '2.2.8';
+        const options = {
+            hostname: 'api.github.com',
+            path: '/repos/YuEx-DEV/HDify/releases/latest',
+            headers: {
+                'User-Agent': `HDify-Desktop-v${currentVersion}`,
+                'Accept': 'application/vnd.github.v3+json'
+            },
+            timeout: 9000
+        };
+
+        const req = https.get(options, (res) => {
+            let data = '';
+            res.on('data', chunk => data += chunk);
+            res.on('end', () => {
+                if (res.statusCode !== 200) {
+                    return resolve({
+                        success: false,
+                        error: `GitHub API returned HTTP ${res.statusCode}`
+                    });
+                }
+                try {
+                    const json = JSON.parse(data);
+                    const tag = (json.tag_name || '').trim();
+                    const latestVersion = tag.replace(/^v/, '');
+
+                    function isNewer(vNew, vCur) {
+                        const n = vNew.split('.').map(x => parseInt(x, 10) || 0);
+                        const c = vCur.split('.').map(x => parseInt(x, 10) || 0);
+                        for (let i = 0; i < Math.max(n.length, c.length); i++) {
+                            const p1 = n[i] || 0;
+                            const p2 = c[i] || 0;
+                            if (p1 > p2) return true;
+                            if (p1 < p2) return false;
+                        }
+                        return false;
+                    }
+
+                    const hasUpdate = isNewer(latestVersion, currentVersion);
+                    const assets = Array.isArray(json.assets) ? json.assets : [];
+                    const setupAsset = assets.find(a => /setup/i.test(a.name) && a.name.endsWith('.exe'))?.browser_download_url || '';
+                    const portableAsset = assets.find(a => /portable/i.test(a.name) && a.name.endsWith('.exe'))?.browser_download_url || '';
+                    const apkAsset = assets.find(a => a.name.endsWith('.apk'))?.browser_download_url || '';
+
+                    resolve({
+                        success: true,
+                        hasUpdate,
+                        currentVersion,
+                        latestVersion,
+                        releaseTag: tag,
+                        releaseTitle: json.name || tag,
+                        releaseNotes: json.body || '',
+                        releaseUrl: json.html_url || 'https://github.com/YuEx-DEV/HDify/releases',
+                        setupAsset,
+                        portableAsset,
+                        apkAsset,
+                        publishedAt: json.published_at || ''
+                    });
+                } catch (parseErr) {
+                    resolve({ success: false, error: 'Failed to parse GitHub response' });
+                }
+            });
+        });
+
+        req.on('error', (err) => {
+            resolve({ success: false, error: err.message });
+        });
+
+        req.on('timeout', () => {
+            req.destroy();
+            resolve({ success: false, error: 'Connection timeout' });
+        });
+    });
+});
+
 // Hardware Info
 ipcMain.handle('system:getHardwareInfo', async () => {
     return new Promise((resolve) => {

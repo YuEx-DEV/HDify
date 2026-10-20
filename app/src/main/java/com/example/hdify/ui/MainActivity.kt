@@ -128,6 +128,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // Check for updates in background (non-blocking)
+        lifecycleScope.launch {
+            kotlinx.coroutines.delay(3000)
+            com.example.hdify.util.GitHubUpdateChecker.checkForUpdate(this@MainActivity, isManual = false)
+        }
     }
 
     private fun checkNotificationPermission() {

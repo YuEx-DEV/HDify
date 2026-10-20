@@ -243,6 +243,16 @@
             settings_folder_desc: 'Lokasi default untuk menyimpan file foto dan video hasil pemrosesan.',
             settings_models_title: 'Manajer Model AI (Vulkan NCNN)',
             settings_models_desc: 'Status neural network lokal dan mesin akselerasi GPU.',
+            settings_update_title: 'Pembaruan Aplikasi',
+            settings_update_desc: 'Cek ketersediaan versi terbaru langsung dari GitHub Releases.',
+            btn_check_update: 'Periksa Pembaruan',
+            update_status_latest: 'Terbaru',
+            update_status_available: 'Update Tersedia!',
+            update_modal_title: 'Pembaruan Baru Tersedia!',
+            update_notes_label: 'Catatan Rilis (Changelog):',
+            btn_update_later: 'Nanti Saja',
+            btn_view_github: 'Buka di GitHub',
+            btn_download_update: 'Unduh Update',
             model_ready: '✓ Siap / Aktif',
             model_missing: 'Belum Terpasang',
             btn_change_folder: 'Ubah',
@@ -494,6 +504,16 @@
             settings_folder_desc: 'Default location for processed photos and videos.',
             settings_models_title: 'AI Models Manager (Vulkan NCNN)',
             settings_models_desc: 'Status of local neural networks and GPU acceleration engine.',
+            settings_update_title: 'App Updates',
+            settings_update_desc: 'Check for newer releases directly from GitHub Releases.',
+            btn_check_update: 'Check for Updates',
+            update_status_latest: 'Up to Date',
+            update_status_available: 'Update Available!',
+            update_modal_title: 'New Update Available!',
+            update_notes_label: 'Release Notes (Changelog):',
+            btn_update_later: 'Later',
+            btn_view_github: 'View on GitHub',
+            btn_download_update: 'Download Update',
             model_ready: '✓ Ready / Active',
             model_missing: 'Not Installed',
             btn_change_folder: 'Change',
@@ -691,6 +711,163 @@
                 document.getElementById('input-output-dir').value = dir;
             }
         });
+
+        // ------------------------------------------
+        // GitHub Auto-Update Checker Logic
+        // ------------------------------------------
+        let cachedUpdateData = null;
+
+        async function checkForUpdates(manual = false) {
+            const btnCheck = document.getElementById('btn-check-updates');
+            const iconSpin = document.getElementById('icon-update-spin');
+            const lblLastCheck = document.getElementById('lbl-last-update-check');
+            const badgeStatus = document.getElementById('badge-version-status');
+            const titlebarBadge = document.getElementById('titlebar-update-badge');
+
+            if (btnCheck && manual) {
+                btnCheck.disabled = true;
+                if (iconSpin) iconSpin.classList.add('is-spinning');
+            }
+
+            try {
+                if (!window.hdifyApi || typeof window.hdifyApi.checkUpdate !== 'function') {
+                    if (manual) alert(currentLang === 'id' ? 'Fitur pembaruan tidak tersedia dalam mode browser.' : 'Update feature not available in browser mode.');
+                    return;
+                }
+
+                const res = await window.hdifyApi.checkUpdate();
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                if (lblLastCheck) {
+                    lblLastCheck.textContent = currentLang === 'id'
+                        ? `Terakhir dicek: Hari ini pukul ${timeStr}`
+                        : `Last checked: Today at ${timeStr}`;
+                }
+
+                if (!res || !res.success) {
+                    if (manual) {
+                        alert(currentLang === 'id'
+                            ? `Gagal memeriksa pembaruan: ${res?.error || 'Koneksi terputus'}`
+                            : `Failed to check for updates: ${res?.error || 'Connection failed'}`);
+                    }
+                    return;
+                }
+
+                cachedUpdateData = res;
+
+                if (res.hasUpdate) {
+                    // Update Available!
+                    if (titlebarBadge) {
+                        titlebarBadge.style.display = 'inline-block';
+                        titlebarBadge.textContent = `UPDATE ${res.releaseTag}`;
+                    }
+                    if (badgeStatus) {
+                        badgeStatus.className = 'badge-status-clean badge-status-update';
+                        badgeStatus.innerHTML = `${res.releaseTag} • <span>${i18n[currentLang].update_status_available || 'Update Tersedia!'}</span>`;
+                    }
+
+                    const ignoredVer = localStorage.getItem('hdify_ignored_update');
+                    if (!manual && ignoredVer === res.latestVersion) {
+                        return;
+                    }
+
+                    showUpdateModal(res);
+                } else {
+                    // Already latest!
+                    if (titlebarBadge) titlebarBadge.style.display = 'none';
+                    if (badgeStatus) {
+                        badgeStatus.className = 'badge-status-clean';
+                        badgeStatus.innerHTML = `v${res.currentVersion} • <span>${i18n[currentLang].update_status_latest || 'Terbaru'}</span>`;
+                    }
+                    if (manual) {
+                        alert(currentLang === 'id'
+                            ? `Aplikasi Anda sudah menggunakan versi terbaru (v${res.currentVersion})!`
+                            : `You are already using the latest version (v${res.currentVersion})!`);
+                    }
+                }
+            } catch (err) {
+                console.warn('Update check failed:', err);
+                if (manual) {
+                    alert(currentLang === 'id'
+                        ? 'Terjadi kesalahan saat memeriksa update.'
+                        : 'Error checking for updates.');
+                }
+            } finally {
+                if (btnCheck && manual) {
+                    btnCheck.disabled = false;
+                    if (iconSpin) iconSpin.classList.remove('is-spinning');
+                }
+            }
+        }
+
+        function showUpdateModal(data) {
+            const modal = document.getElementById('modal-update');
+            const verTag = document.getElementById('update-modal-version-tag');
+            const notesBox = document.getElementById('update-modal-notes');
+            const btnDownload = document.getElementById('btn-update-download-now');
+            const btnGithub = document.getElementById('btn-update-view-github');
+
+            if (!modal) return;
+
+            if (verTag) {
+                verTag.textContent = `Versi v${data.currentVersion} ➔ ${data.releaseTag}`;
+            }
+            if (notesBox) {
+                notesBox.textContent = data.releaseNotes || (currentLang === 'id' ? 'Pembaruan performa dan perbaikan bug.' : 'Performance improvements and bug fixes.');
+            }
+
+            if (btnDownload) {
+                btnDownload.onclick = () => {
+                    const targetUrl = data.setupAsset || data.portableAsset || data.releaseUrl;
+                    if (window.hdifyApi && typeof window.hdifyApi.openExternal === 'function') {
+                        window.hdifyApi.openExternal(targetUrl);
+                    } else {
+                        window.open(targetUrl, '_blank');
+                    }
+                    modal.style.display = 'none';
+                };
+            }
+
+            if (btnGithub) {
+                btnGithub.onclick = () => {
+                    if (window.hdifyApi && typeof window.hdifyApi.openExternal === 'function') {
+                        window.hdifyApi.openExternal(data.releaseUrl);
+                    } else {
+                        window.open(data.releaseUrl, '_blank');
+                    }
+                };
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        // Modal close handlers
+        document.getElementById('btn-close-update-modal')?.addEventListener('click', () => {
+            const modal = document.getElementById('modal-update');
+            if (modal) modal.style.display = 'none';
+        });
+        document.getElementById('btn-update-later')?.addEventListener('click', () => {
+            if (cachedUpdateData && cachedUpdateData.latestVersion) {
+                localStorage.setItem('hdify_ignored_update', cachedUpdateData.latestVersion);
+            }
+            const modal = document.getElementById('modal-update');
+            if (modal) modal.style.display = 'none';
+        });
+        document.getElementById('titlebar-update-badge')?.addEventListener('click', () => {
+            if (cachedUpdateData && cachedUpdateData.hasUpdate) {
+                showUpdateModal(cachedUpdateData);
+            } else {
+                checkForUpdates(true);
+            }
+        });
+        document.getElementById('btn-check-updates')?.addEventListener('click', () => {
+            checkForUpdates(true);
+        });
+
+        // Trigger silent update check 2.5 seconds after app startup
+        setTimeout(() => {
+            checkForUpdates(false);
+        }, 2500);
     }
 
     function getSafeFilePath(file) {

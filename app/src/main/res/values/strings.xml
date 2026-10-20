@@ -547,4 +547,15 @@
     <string name="scale_short_format">x%1$d</string>
     <string name="scale_short_1x">x1</string>
     <string name="label_preview">Pratinjau</string>
+
+    <!-- GitHub Update Checker -->
+    <string name="update_check_title">Pembaruan Aplikasi</string>
+    <string name="update_available_title">Pembaruan Baru Tersedia!</string>
+    <string name="update_available_msg">Versi %1$s telah dirilis di GitHub. Apakah Anda ingin mengunduh sekarang?</string>
+    <string name="update_already_latest">Aplikasi sudah menggunakan versi terbaru (%1$s).</string>
+    <string name="update_check_failed">Gagal memeriksa pembaruan: %1$s</string>
+    <string name="btn_download_apk">Unduh APK</string>
+    <string name="btn_view_release">Buka GitHub</string>
+    <string name="btn_later">Nanti Saja</string>
+    <string name="btn_check_update">Periksa Pembaruan</string>
 </resources>

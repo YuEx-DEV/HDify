@@ -47,6 +47,7 @@ contextBridge.exposeInMainWorld('hdifyApi', {
 
     // System / Clipboard
     getClipboardText: () => ipcRenderer.invoke('system:getClipboardText'),
+    checkUpdate: () => ipcRenderer.invoke('system:checkUpdate'),
 
     // Media Downloader
     extractMediaInfo: (url) => ipcRenderer.invoke('downloader:extract', url),

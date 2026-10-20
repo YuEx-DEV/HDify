@@ -77,7 +77,10 @@ class SettingsFragment : Fragment() {
             }
         }
 
-        binding.tvAppVersion.text = "HDify v${com.example.hdify.BuildConfig.VERSION_NAME} (Build ${com.example.hdify.BuildConfig.VERSION_CODE})"
+        binding.tvAppVersion.text = "HDify v${com.example.hdify.BuildConfig.VERSION_NAME} (Build ${com.example.hdify.BuildConfig.VERSION_CODE}) • ${getString(R.string.btn_check_update)}"
+        binding.tvAppVersion.setOnClickListener {
+            com.example.hdify.util.GitHubUpdateChecker.checkForUpdate(requireContext(), isManual = true)
+        }
 
         // Language Toggle Listener
         binding.toggleLanguage.addOnButtonCheckedListener { _, checkedId, isChecked ->

@@ -16,6 +16,7 @@
             </svg>
             <span id="titlebar-text">HDify • Ultra HD Engine (Desktop)</span>
             <span class="titlebar-version">v2.2.8</span>
+            <span id="titlebar-update-badge" class="titlebar-update-pill" style="display: none;" title="Pembaruan Baru Tersedia!">NEW UPDATE</span>
         </div>
         <div class="titlebar-controls">
             <button class="control-btn" id="btn-win-min" title="Minimize" data-i18n-title="title_minimize">
@@ -1047,6 +1048,25 @@
                     </div>
                 </div>
 
+                <!-- App Updates Card -->
+                <div class="card" id="card-app-update">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 14px;">
+                        <div>
+                            <div class="card-title" data-i18n="settings_update_title">Pembaruan Aplikasi</div>
+                            <div class="card-subtitle" data-i18n="settings_update_desc">Cek ketersediaan versi terbaru langsung dari GitHub Releases.</div>
+                        </div>
+                        <span id="badge-version-status" class="badge-status-clean">v2.2.8 • <span data-i18n="update_status_latest">Terbaru</span></span>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--bg-glass-stroke); gap: 10px;">
+                        <div style="font-size: 12px; color: var(--text-secondary);" id="lbl-last-update-check">Terakhir dicek: Belum pernah</div>
+                        <button class="btn btn-secondary btn-sm" id="btn-check-updates" style="padding: 8px 16px; font-size: 12px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" id="icon-update-spin" style="margin-right: 6px;"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                            <span data-i18n="btn_check_update">Periksa Pembaruan</span>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-title" data-i18n="section_developer">Pengembang &amp; Informasi</div>
                     <div class="dev-card" id="btn-dev-card-settings" style="margin-top: 10px;">
@@ -1062,6 +1082,42 @@
             </section>
 
         </main>
+    </div>
+
+    <!-- Update Modal Dialog -->
+    <div class="modal-backdrop" id="modal-update" style="display: none;">
+        <div class="modal-glass-card">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <div class="modal-icon-badge">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#38bdf8"><path d="M13.13 2.64l6.09 6.09c.39.39.39 1.02 0 1.41l-2.07 2.07-7.5-7.5 2.07-2.07c.39-.39 1.02-.39 1.41 0zM2.87 18.26l7.5-7.5 4.95 4.95-7.5 7.5c-.39.39-1.02.39-1.41 0l-3.54-3.54c-.39-.39-.39-1.02 0-1.41z"/></svg>
+                    </div>
+                    <div>
+                        <div class="modal-title" data-i18n="update_modal_title">Pembaruan Baru Tersedia!</div>
+                        <div class="modal-version-sub" id="update-modal-version-tag">Versi v2.2.8 &rarr; v2.2.9</div>
+                    </div>
+                </div>
+                <button type="button" class="modal-close-btn" id="btn-close-update-modal" title="Tutup">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="update-notes-label" data-i18n="update_notes_label">Catatan Rilis (Changelog):</div>
+                <div class="update-notes-box" id="update-modal-notes">
+                    <!-- Changelog populated dynamically -->
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-update-later" data-i18n="btn_update_later">Nanti Saja</button>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-secondary" id="btn-update-view-github" data-i18n="btn_view_github">Buka di GitHub</button>
+                    <button class="btn btn-primary" id="btn-update-download-now">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                        <span data-i18n="btn_download_update">Unduh Update</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Script Entrypoint -->
