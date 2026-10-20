@@ -35,51 +35,60 @@
     <div class="app-container">
 
         <!-- Sidebar Navigation -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="app-sidebar">
             <div class="nav-header">
                 <div class="nav-brand-row">
-                    <svg class="nav-brand-logo" viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    <span class="nav-brand-title">HDify</span>
+                    <div class="nav-brand-main" id="btn-brand-toggle" title="HDify">
+                        <svg class="nav-brand-logo" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <span class="nav-brand-title">HDify</span>
+                    </div>
+                    <button class="sidebar-toggle-btn" id="btn-toggle-sidebar" title="Ciutkan Sidebar (Ctrl+B)" data-i18n-title="sidebar_collapse">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="9" y1="3" x2="9" y2="21"/>
+                            <path class="sidebar-toggle-arrow" d="M14 9l-3 3 3 3"/>
+                        </svg>
+                    </button>
                 </div>
                 <div class="nav-brand-sub" data-i18n="app_subtitle">Monochrome • Material You</div>
             </div>
 
             <nav class="nav-list">
-                <button class="nav-item active" data-view="view-home">
+                <button class="nav-item active" data-view="view-home" data-tooltip="Beranda">
                     <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                     <span data-i18n="nav_home">Beranda</span>
                 </button>
-                <button class="nav-item" data-view="view-image">
+                <button class="nav-item" data-view="view-image" data-tooltip="AI Image Upscaler">
                     <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
                     <span data-i18n="nav_image">AI Image Upscaler</span>
                 </button>
-                <button class="nav-item" data-view="view-video">
+                <button class="nav-item" data-view="view-video" data-tooltip="AI Video Upscaler">
                     <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
                     <span data-i18n="nav_video">AI Video Upscaler</span>
                 </button>
-                <button class="nav-item" data-view="view-bgremover">
+                <button class="nav-item" data-view="view-bgremover" data-tooltip="Hapus Background">
                     <svg viewBox="0 0 24 24"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3h-3z"/></svg>
                     <span data-i18n="nav_bgremover">Hapus Background</span>
                 </button>
-                <button class="nav-item" data-view="view-compressor">
+                <button class="nav-item" data-view="view-compressor" data-tooltip="Kompres Video">
                     <svg viewBox="0 0 24 24"><path d="M4 9h16v2H4zm0 4h16v2H4zm4 4h8v2H8zM8 5h8v2H8z"/></svg>
                     <span data-i18n="nav_compressor">Kompres Video</span>
                 </button>
-                <button class="nav-item" data-view="view-downloader">
+                <button class="nav-item" data-view="view-downloader" data-tooltip="Downloader Media">
                     <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
                     <span data-i18n="nav_downloader">Downloader Media</span>
                 </button>
-                <button class="nav-item" data-view="view-hardware">
+                <button class="nav-item" data-view="view-hardware" data-tooltip="Hardware & Benchmark">
                     <svg viewBox="0 0 24 24"><path d="M22 9V7h-2V5c0-1.1-.9-2-2-2h-2V1h-2v2h-4V1H8v2H6c-1.1 0-2 .9-2 2v2H2v2h2v4H2v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h4v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2V9h2zm-4 10H6V5h12v14zm-9-9h6v6H9z"/></svg>
                     <span data-i18n="nav_hardware">Hardware & Benchmark</span>
                 </button>
-                <button class="nav-item" data-view="view-queue">
+                <button class="nav-item" data-view="view-queue" data-tooltip="Antrian Tugas">
                     <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
                     <span data-i18n="nav_queue">Antrian Tugas</span>
                 </button>
-                <button class="nav-item" data-view="view-settings">
+                <button class="nav-item" data-view="view-settings" data-tooltip="Pengaturan">
                     <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
                     <span data-i18n="nav_settings">Pengaturan</span>
                 </button>
@@ -90,9 +99,13 @@
                     <button class="lang-btn active" id="btn-lang-id">ID</button>
                     <button class="lang-btn" id="btn-lang-en">EN</button>
                 </div>
-                <div style="font-size: 11px; color: var(--text-tertiary);">HDify v2.2.8</div>
+                <button class="sidebar-collapsed-lang" id="btn-collapsed-lang" title="Ganti Bahasa (ID / EN)">ID</button>
+                <div class="sidebar-footer-version" style="font-size: 11px; color: var(--text-tertiary);">HDify v2.2.8</div>
             </div>
         </aside>
+
+        <!-- Draggable Sidebar Resizer Divider -->
+        <div class="sidebar-resizer" id="sidebar-resizer" title="Geser untuk mengubah lebar sidebar (Klik 2x untuk reset)"></div>
 
         <!-- Main Dynamic Content -->
         <main class="content-area">

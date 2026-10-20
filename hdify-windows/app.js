@@ -23,6 +23,9 @@
             nav_hardware: 'Hardware & Benchmark',
             nav_queue: 'Antrian Tugas',
             nav_settings: 'Pengaturan',
+            sidebar_collapse: 'Ciutkan Sidebar (Ctrl+B)',
+            sidebar_expand: 'Lebarkan Sidebar (Ctrl+B)',
+            sidebar_resize_hint: 'Geser untuk mengatur lebar sidebar (Klik 2x untuk reset)',
 
             title_minimize: 'Minimize',
             title_maximize: 'Maximize',
@@ -284,6 +287,9 @@
             nav_hardware: 'Hardware & Benchmark',
             nav_queue: 'Task Queue',
             nav_settings: 'Settings',
+            sidebar_collapse: 'Collapse Sidebar (Ctrl+B)',
+            sidebar_expand: 'Expand Sidebar (Ctrl+B)',
+            sidebar_resize_hint: 'Drag to resize sidebar (Double click to reset)',
 
             title_minimize: 'Minimize',
             title_maximize: 'Maximize',
@@ -578,6 +584,28 @@
             btn.classList.toggle('active', btn.dataset.lang === lang);
         });
 
+        // Update collapsed language button & nav item tooltips
+        const btnCollapsedLang = document.getElementById('btn-collapsed-lang');
+        if (btnCollapsedLang) {
+            btnCollapsedLang.textContent = lang.toUpperCase();
+        }
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            const span = item.querySelector('span[data-i18n]');
+            if (span && span.textContent) {
+                item.setAttribute('data-tooltip', span.textContent);
+            }
+        });
+
+        const sidebar = document.getElementById('app-sidebar');
+        const btnToggleSidebar = document.getElementById('btn-toggle-sidebar');
+        if (sidebar && btnToggleSidebar) {
+            const isCollapsed = sidebar.classList.contains('collapsed');
+            btnToggleSidebar.title = isCollapsed
+                ? (i18n[lang]?.sidebar_expand || 'Lebarkan Sidebar (Ctrl+B)')
+                : (i18n[lang]?.sidebar_collapse || 'Ciutkan Sidebar (Ctrl+B)');
+        }
+
         // Trigger dynamic subviews updates
         if (typeof updateSavingsEstimate === 'function') updateSavingsEstimate();
         if (typeof renderQueue === 'function') renderQueue();
@@ -635,6 +663,158 @@
         const openTikTok = () => window.hdifyApi.openExternal('https://www.tiktok.com/@yuukaonlyone_?_r=1&_t=ZS-9ANT1Wtl7kF');
         document.getElementById('btn-open-dev-tiktok')?.addEventListener('click', openTikTok);
         document.getElementById('btn-dev-card-settings')?.addEventListener('click', openTikTok);
+
+        // ==========================================
+        // SIDEBAR RESIZE & EXPAND / COLLAPSE
+        // ==========================================
+        const sidebar = document.getElementById('app-sidebar');
+        const sidebarResizer = document.getElementById('sidebar-resizer');
+        const btnToggleSidebar = document.getElementById('btn-toggle-sidebar');
+        const btnBrandToggle = document.getElementById('btn-brand-toggle');
+        const btnCollapsedLang = document.getElementById('btn-collapsed-lang');
+
+        const MIN_SIDEBAR_WIDTH = 190;
+        const MAX_SIDEBAR_WIDTH = 460;
+        const DEFAULT_SIDEBAR_WIDTH = 250;
+
+        // Restore saved width and collapsed state
+        let savedWidth = parseInt(localStorage.getItem('hdify_sidebar_width'), 10);
+        if (isNaN(savedWidth) || savedWidth < MIN_SIDEBAR_WIDTH || savedWidth > MAX_SIDEBAR_WIDTH) {
+            savedWidth = DEFAULT_SIDEBAR_WIDTH;
+        }
+
+        const isInitiallyCollapsed = localStorage.getItem('hdify_sidebar_collapsed') === 'true';
+
+        function applySidebarWidth(w, save = true) {
+            if (sidebar) {
+                sidebar.style.setProperty('--sidebar-width', `${w}px`);
+                sidebar.style.width = `${w}px`;
+            }
+            if (save) {
+                localStorage.setItem('hdify_sidebar_width', w);
+            }
+        }
+
+        function setSidebarCollapsed(collapsed) {
+            if (!sidebar) return;
+            if (collapsed) {
+                sidebar.classList.add('collapsed');
+                localStorage.setItem('hdify_sidebar_collapsed', 'true');
+                if (btnToggleSidebar) {
+                    btnToggleSidebar.title = i18n[currentLang]?.sidebar_expand || 'Lebarkan Sidebar (Ctrl+B)';
+                }
+            } else {
+                sidebar.classList.remove('collapsed');
+                localStorage.setItem('hdify_sidebar_collapsed', 'false');
+                applySidebarWidth(savedWidth, false);
+                if (btnToggleSidebar) {
+                    btnToggleSidebar.title = i18n[currentLang]?.sidebar_collapse || 'Ciutkan Sidebar (Ctrl+B)';
+                }
+            }
+        }
+
+        function toggleSidebar() {
+            if (!sidebar) return;
+            const willCollapse = !sidebar.classList.contains('collapsed');
+            setSidebarCollapsed(willCollapse);
+        }
+
+        // Initialize state
+        applySidebarWidth(savedWidth, false);
+        if (isInitiallyCollapsed) {
+            setSidebarCollapsed(true);
+        }
+
+        btnToggleSidebar?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // Clicking brand logo when collapsed expands it
+        btnBrandToggle?.addEventListener('click', () => {
+            if (sidebar?.classList.contains('collapsed')) {
+                setSidebarCollapsed(false);
+            }
+        });
+
+        // Collapsed Lang Button
+        btnCollapsedLang?.addEventListener('click', () => {
+            const nextLang = currentLang === 'id' ? 'en' : 'id';
+            setLanguage(nextLang);
+        });
+
+        // Shortcut: Ctrl+B or Cmd+B to toggle sidebar
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'b' || e.key === 'B')) {
+                e.preventDefault();
+                toggleSidebar();
+            }
+        });
+
+        // Dragging Resizer Logic
+        if (sidebarResizer && sidebar) {
+            let isDragging = false;
+            let startX = 0;
+            let startWidth = DEFAULT_SIDEBAR_WIDTH;
+
+            sidebarResizer.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                isDragging = true;
+                startX = e.clientX;
+                startWidth = sidebar.getBoundingClientRect().width;
+                document.body.classList.add('is-resizing');
+
+                const onMouseMove = (moveEvent) => {
+                    if (!isDragging) return;
+                    const deltaX = moveEvent.clientX - startX;
+                    let newWidth = startWidth + deltaX;
+
+                    if (newWidth < 125) {
+                        // Snap to collapsed
+                        if (!sidebar.classList.contains('collapsed')) {
+                            setSidebarCollapsed(true);
+                        }
+                        return;
+                    }
+
+                    // If currently collapsed and dragged out, uncollapse
+                    if (sidebar.classList.contains('collapsed')) {
+                        if (newWidth >= 150) {
+                            setSidebarCollapsed(false);
+                        } else {
+                            return;
+                        }
+                    }
+
+                    newWidth = Math.max(MIN_SIDEBAR_WIDTH, Math.min(MAX_SIDEBAR_WIDTH, newWidth));
+                    savedWidth = Math.round(newWidth);
+                    applySidebarWidth(savedWidth, true);
+                };
+
+                const onMouseUp = () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    document.body.classList.remove('is-resizing');
+                    window.removeEventListener('mousemove', onMouseMove);
+                    window.removeEventListener('mouseup', onMouseUp);
+                };
+
+                window.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('mouseup', onMouseUp);
+            });
+
+            // Double click resizer to reset to default 250px or toggle collapse
+            sidebarResizer.addEventListener('dblclick', () => {
+                if (sidebar.classList.contains('collapsed')) {
+                    setSidebarCollapsed(false);
+                } else if (savedWidth !== DEFAULT_SIDEBAR_WIDTH) {
+                    savedWidth = DEFAULT_SIDEBAR_WIDTH;
+                    applySidebarWidth(savedWidth, true);
+                } else {
+                    setSidebarCollapsed(true);
+                }
+            });
+        }
     }
 
     // ==========================================

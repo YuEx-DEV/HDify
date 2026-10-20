@@ -131,29 +131,109 @@ body {
     display: flex;
     flex: 1;
     overflow: hidden;
+    position: relative;
+}
+
+body.is-resizing,
+body.is-resizing * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    cursor: col-resize !important;
+}
+
+body.is-resizing .sidebar {
+    transition: none !important;
 }
 
 /* Sidebar Navigation */
 .sidebar {
-    width: 250px;
+    width: var(--sidebar-width, 250px);
+    min-width: 68px;
+    max-width: 480px;
     background: var(--bg-secondary);
     border-right: 1px solid var(--bg-glass-stroke);
     display: flex;
     flex-direction: column;
     padding: 18px 12px;
     gap: 8px;
+    flex-shrink: 0;
+    transition: width 0.24s cubic-bezier(0.16, 1, 0.3, 1), padding 0.24s ease;
+    position: relative;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+/* Draggable Resizer */
+.sidebar-resizer {
+    width: 8px;
+    margin-left: -4px;
+    position: relative;
+    z-index: 50;
+    cursor: col-resize;
+    flex-shrink: 0;
+    background: transparent;
+    transition: background 0.15s ease;
+}
+
+.sidebar-resizer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 3px;
+    width: 2px;
+    background: transparent;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-resizer:hover::after,
+body.is-resizing .sidebar-resizer::after {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .nav-header {
     padding: 0 10px 14px;
     border-bottom: 1px solid var(--bg-glass-stroke);
     margin-bottom: 6px;
+    transition: padding 0.2s ease;
 }
 
 .nav-brand-row {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.nav-brand-main {
+    display: flex;
+    align-items: center;
     gap: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar-toggle-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--bg-glass-stroke);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.sidebar-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .nav-brand-logo {
@@ -202,6 +282,12 @@ body {
     will-change: transform;
 }
 
+.nav-item span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .nav-item:hover {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
@@ -234,6 +320,126 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.sidebar-collapsed-lang {
+    display: none;
+}
+
+/* ==========================================
+   COLLAPSED SIDEBAR STATE
+   ========================================== */
+.sidebar.collapsed {
+    width: 68px !important;
+    padding: 18px 8px;
+}
+
+.sidebar.collapsed .nav-header {
+    padding: 0 0 14px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar.collapsed .nav-brand-row {
+    width: 100%;
+    justify-content: center;
+}
+
+.sidebar.collapsed .nav-brand-title,
+.sidebar.collapsed .nav-brand-sub,
+.sidebar.collapsed .sidebar-footer-version,
+.sidebar.collapsed .lang-switch,
+.sidebar.collapsed .sidebar-toggle-btn {
+    display: none !important;
+}
+
+.sidebar.collapsed .nav-brand-main {
+    cursor: pointer;
+    justify-content: center;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s ease;
+}
+
+.sidebar.collapsed .nav-brand-main:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar.collapsed .nav-item {
+    justify-content: center;
+    padding: 10px 0;
+    gap: 0;
+    width: 100%;
+    position: relative;
+}
+
+.sidebar.collapsed .nav-item span {
+    display: none !important;
+}
+
+.sidebar.collapsed .nav-item:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar.collapsed .nav-item.active {
+    transform: none;
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Floating Tooltip in Collapsed State */
+.sidebar.collapsed .nav-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%) scale(0.92);
+    background: rgba(22, 22, 26, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    z-index: 9999;
+}
+
+.sidebar.collapsed .nav-item:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+.sidebar.collapsed .sidebar-footer {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-collapsed-lang {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 28px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1px solid var(--bg-glass-stroke);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sidebar.collapsed .sidebar-collapsed-lang:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .lang-switch {
