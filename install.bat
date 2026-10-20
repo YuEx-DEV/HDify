@@ -18,6 +18,11 @@ if %errorlevel% equ 0 (
     goto :found_adb
 )
 
+if exist "D:\Ai\tooling\android-sdk\platform-tools\adb.exe" (
+    set "ADB_BIN=D:\Ai\tooling\android-sdk\platform-tools\adb.exe"
+    goto :found_adb
+)
+
 if exist "%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe" (
     set "ADB_BIN=%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe"
     goto :found_adb
